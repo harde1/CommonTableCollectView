@@ -1,0 +1,24 @@
+//
+//  CommonCell.h
+//  PudiEdu
+//
+//  Created by cong on 15/10/4.
+//  Copyright © 2015年 cong. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@class CommonTableView;
+
+@interface CommonCell : UITableViewCell
+@property(strong,nonatomic)id params;
+
+@property(strong,nonatomic)NSIndexPath * myIndexPath;
+
+@property(weak,nonatomic)CommonTableView * tableView;
+
+
+-(void)commonTableView:(CommonTableView *)tableView inViewController:(id)viewController didSelectCellAtIndexPath:(NSIndexPath *)indexPath;
+
+-(void)commonTableView:(CommonTableView *)tableView inViewController:(id)viewController cellForIndexPath:(NSIndexPath *)indexPath;
+@end
