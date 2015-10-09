@@ -1,12 +1,21 @@
 # CommonTableCollectView
 通用型tableViewCollectView
 
+
+#  Cocoapods 内测版
+
+ pod 'CommonTableCollectView', :git => 'https://github.com/harde1/CommonTableCollectView'
+
+
 #  优点
 
 优点是：
 1、一句代码做完3问1答，代码少
+
 2、面向对象，对象自己负责所有关于自己的事情，cell负责数据处理提取，cell负责事件绑定
+
 3、tableView/collectView与controler脱离，cell与tableView/collectView脱离，好处是cell到那里vc的tableView/collectView，事件和相关的东西都会跟着过去，不会搞乱代码
+
 4、不用写delegate,dataSource,千万不要写，写了就无效了，不要写协议，直接使用
 
 
