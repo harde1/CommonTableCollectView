@@ -63,8 +63,9 @@ typedef void(^CellAtIndexPathSendData)(UITableViewCell * cell, NSIndexPath * ind
 -(void)clearAllData;//清空所有数据
 
 -(void)interceptObjectEvent:(UIView *)view;
+//移除indexPath的cell的高度缓存
 -(void)removeHeightByIndexPath:(NSIndexPath *)indexPath;
-
+//移除所有高度缓存
 -(void)removeHeight;
 
 -(void)setDidSelectRowAtIndexPath:(DidSelectRowAtIndexPath)didSelectRowAtIndexPath;
