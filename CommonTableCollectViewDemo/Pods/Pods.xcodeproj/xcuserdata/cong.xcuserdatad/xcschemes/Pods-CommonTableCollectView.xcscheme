@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C86022E97115336AB580F353"
+               BlueprintIdentifier = "E55BB27FDF5765BDBAE33A3D"
                BuildableName = "libPods-CommonTableCollectView.a"
                BlueprintName = "Pods-CommonTableCollectView"
                ReferencedContainer = "container:Pods.xcodeproj">

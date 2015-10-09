@@ -404,6 +404,18 @@
         [cell setValue:self.arr_dataSource[indexPath.section][indexPath.row] forKey:@"params"];
     }
     
+    
+    if ([cell isKindOfClass:[CommonCell class]]) {
+        
+        
+        CommonCell * commonCell = (CommonCell *)cell;
+        [commonCell commonTableView:self inViewController:[self viewController] cellForIndexPath:indexPath];
+        
+    }else{
+        NSLog(@"warning:没有继承CommonCell");
+    }
+    
+    
     if (_cellAtIndexPath) {
         _cellAtIndexPath(cell,indexPath);
     }

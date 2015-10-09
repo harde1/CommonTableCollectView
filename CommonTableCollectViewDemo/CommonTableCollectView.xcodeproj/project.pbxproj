@@ -16,6 +16,8 @@
 		F47E587A1BC7B5C300D1633A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F47E58781BC7B5C300D1633A /* LaunchScreen.storyboard */; };
 		F47E58851BC7B5C300D1633A /* CommonTableCollectViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F47E58841BC7B5C300D1633A /* CommonTableCollectViewTests.m */; };
 		F47E58901BC7B5C300D1633A /* CommonTableCollectViewUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F47E588F1BC7B5C300D1633A /* CommonTableCollectViewUITests.m */; };
+		F47E58A01BC7D21C00D1633A /* Cell_test.m in Sources */ = {isa = PBXBuildFile; fileRef = F47E589E1BC7D21C00D1633A /* Cell_test.m */; settings = {ASSET_TAGS = (); }; };
+		F47E58A11BC7D21C00D1633A /* Cell_test.xib in Resources */ = {isa = PBXBuildFile; fileRef = F47E589F1BC7D21C00D1633A /* Cell_test.xib */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,9 @@
 		F47E588B1BC7B5C300D1633A /* CommonTableCollectViewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CommonTableCollectViewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F47E588F1BC7B5C300D1633A /* CommonTableCollectViewUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommonTableCollectViewUITests.m; sourceTree = "<group>"; };
 		F47E58911BC7B5C300D1633A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F47E589D1BC7D21C00D1633A /* Cell_test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell_test.h; sourceTree = "<group>"; };
+		F47E589E1BC7D21C00D1633A /* Cell_test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell_test.m; sourceTree = "<group>"; };
+		F47E589F1BC7D21C00D1633A /* Cell_test.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Cell_test.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +134,9 @@
 				F47E586E1BC7B5C300D1633A /* AppDelegate.m */,
 				F47E58701BC7B5C300D1633A /* ViewController.h */,
 				F47E58711BC7B5C300D1633A /* ViewController.m */,
+				F47E589D1BC7D21C00D1633A /* Cell_test.h */,
+				F47E589E1BC7D21C00D1633A /* Cell_test.m */,
+				F47E589F1BC7D21C00D1633A /* Cell_test.xib */,
 				F47E58731BC7B5C300D1633A /* Main.storyboard */,
 				F47E58761BC7B5C300D1633A /* Assets.xcassets */,
 				F47E58781BC7B5C300D1633A /* LaunchScreen.storyboard */,
@@ -270,6 +278,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F47E587A1BC7B5C300D1633A /* LaunchScreen.storyboard in Resources */,
+				F47E58A11BC7D21C00D1633A /* Cell_test.xib in Resources */,
 				F47E58771BC7B5C300D1633A /* Assets.xcassets in Resources */,
 				F47E58751BC7B5C300D1633A /* Main.storyboard in Resources */,
 			);
@@ -330,6 +339,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F47E58721BC7B5C300D1633A /* ViewController.m in Sources */,
+				F47E58A01BC7D21C00D1633A /* Cell_test.m in Sources */,
 				F47E586F1BC7B5C300D1633A /* AppDelegate.m in Sources */,
 				F47E586C1BC7B5C300D1633A /* main.m in Sources */,
 			);

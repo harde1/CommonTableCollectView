@@ -7,8 +7,10 @@
 //
 
 #import "ViewController.h"
-
+#import "CommonTableView.h"
+#import "Cell_test.h"
 @interface ViewController ()
+@property (weak, nonatomic) IBOutlet CommonTableView *tv_test;
 
 @end
 
@@ -16,12 +18,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+
+    NSString * str = @"sjhkjadhfkjdhsjkfhdsjkfhjkdshfjkladshlfjkhdsjkfhdjkashfjkdshfkdjshfdsjasjhkjadhfk";
+    for (int i=0; i<10; i++) {
+         [_tv_test addNibWithEntity:@{@"内容":str} andCellName:NSStringFromClass([Cell_test class])];
+        
+         str = [str stringByAppendingString:str];
+    }
+    
+   
+    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 @end

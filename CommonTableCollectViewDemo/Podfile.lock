@@ -10,10 +10,10 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   CommonTableCollectView:
-    :commit: e10ed2b774d49bacf4023d17f7503bb1e080be24
+    :commit: 90e08ca2c9296369696ba147286bf0ac74b60a37
     :git: https://github.com/harde1/CommonTableCollectView
 
 SPEC CHECKSUMS:
-  CommonTableCollectView: a6d5d4a6e1ee424710c0e01eb28eb0373da84b54
+  CommonTableCollectView: 113703763cc2bce22b5aa14b86396e208fb20747
 
 COCOAPODS: 0.38.2
