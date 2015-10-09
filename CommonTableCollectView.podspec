@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.homepage     = "https://github.com/harde1/CommonTableCollectView"
   s.license      = "MIT"
 
-  s.source       = { :git => "https://github.com/harde1/CommonTableCollectView.git", :commit => '5fd642e98e028c6ab0e78ac20bcb361833f55a55' }
+  s.source       = { :git => "https://github.com/harde1/CommonTableCollectView.git", :commit => 'e8d947b828012d38641b90fb47287af20ca4406f' }
   s.author             = { "剑仁不败" => "harde1@163.com","敏钦" => "799621181@qq.com" }
 
   s.source_files  = "CommonTableCollectView/*.{h,m}"
