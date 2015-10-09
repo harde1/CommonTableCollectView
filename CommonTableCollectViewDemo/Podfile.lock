@@ -1,0 +1,19 @@
+PODS:
+  - CommonTableCollectView (0.0.1)
+
+DEPENDENCIES:
+  - CommonTableCollectView (from `https://github.com/harde1/CommonTableCollectView`)
+
+EXTERNAL SOURCES:
+  CommonTableCollectView:
+    :git: https://github.com/harde1/CommonTableCollectView
+
+CHECKOUT OPTIONS:
+  CommonTableCollectView:
+    :commit: e10ed2b774d49bacf4023d17f7503bb1e080be24
+    :git: https://github.com/harde1/CommonTableCollectView
+
+SPEC CHECKSUMS:
+  CommonTableCollectView: a6d5d4a6e1ee424710c0e01eb28eb0373da84b54
+
+COCOAPODS: 0.38.2

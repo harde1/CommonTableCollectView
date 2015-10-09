@@ -591,9 +591,9 @@
     str_ClassMeaning = [str_View componentsSeparatedByString:@"_"];
     if (str_ClassMeaning.count<2) {
         NSLog(@"warining:你的控件名字写错了");
-        //        if ([UtilCommon isSimulator]) {
-        //            assert(nil);
-        //        }
+//        if ([UtilCommon isSimulator]) {
+//            assert(nil);
+//        }
         return nil;
     }
     
@@ -683,9 +683,9 @@
         str_ClassMeaning = [str_View componentsSeparatedByString:@"_"];
         if (str_ClassMeaning.count<2) {
             NSLog(@"warining:你的控件名字写错了");
-            //            if ([UtilCommon isSimulator]) {
-            //                assert(nil);
-            //            }
+//            if ([UtilCommon isSimulator]) {
+//                assert(nil);
+//            }
             return;
         }
         str_Class = str_ClassMeaning[0];
@@ -713,9 +713,9 @@
             else{
                 
                 NSLog(@"waring:数据实体里面不包含--%@ 属性",str_Meaning);
-                //                if ([UtilCommon isSimulator]) {
-                //                    //                    assert(nil);
-                //                }
+//                if ([UtilCommon isSimulator]) {
+//                    //                    assert(nil);
+//                }
                 
             }
             
@@ -871,27 +871,27 @@
                 
                 if (![self isValid:object]) {
                     
-                    //                    [iv mas_updateConstraints:^(MASConstraintMaker *make) {
-                    //                        make.height.mas_equalTo(0);
-                    //                    }];
+//                    [iv mas_updateConstraints:^(MASConstraintMaker *make) {
+//                        make.height.mas_equalTo(0);
+//                    }];
                     
                 }else{
                     
                     NSString * str_url = object;
-                    //                    [iv setImageWithURL:[NSURL URLWithString:str_url]];
+//                    [iv setImageWithURL:[NSURL URLWithString:str_url]];
                 }
             }else if([object isKindOfClass:[UIImage class]]){
                 
                 [iv setImage:object];
             }else if([object isKindOfClass:[NSURL class]]){
-                //                [iv setImageWithURL:object];
+//                [iv setImageWithURL:object];
             }
             
             else{
                 
-                //                [iv mas_updateConstraints:^(MASConstraintMaker *make) {
-                //                    make.height.mas_equalTo(0);
-                //                }];
+//                [iv mas_updateConstraints:^(MASConstraintMaker *make) {
+//                    make.height.mas_equalTo(0);
+//                }];
             }
         }
     }else if([str_Class isEqualToString:@"btn"]||[str_View isKindOfClass:[UIButton class]]){
@@ -911,7 +911,7 @@
                 
                 
                 if ([str_url rangeOfString:@"http://"].location != NSNotFound) {
-                    //                    [btn.imageView setImageWithURL:[NSURL URLWithString:str_url]];
+//                    [btn.imageView setImageWithURL:[NSURL URLWithString:str_url]];
                 }else if([vc respondsToSelector:NSSelectorFromString(str_url)]){
                     //                    SEL sel_btn = NSSelectorFromString(str_url);
                     //互动
@@ -923,7 +923,7 @@
             }else if([object isKindOfClass:[UIImage class]]){
                 [btn setImage:object forState:UIControlStateNormal];
             }else if([object isKindOfClass:[NSURL class]]){
-                //                [btn.imageView setImageWithURL:object];
+//                [btn.imageView setImageWithURL:object];
             }
         }
     }else if([str_Class isEqualToString:@"arr"]||[str_View isKindOfClass:[NSArray class]]){
@@ -1206,9 +1206,9 @@
 -(void)addNibWithEntity:(id)object andCellName:(NSString *)cellName {
     
     
-    if (![self.arr_Config[0] containsObject:cellName]&&![cellName isEqualToString:@"UITableViewCell"]) {
-        [self setCellNibName:cellName andCellReuseIdentifier:cellName];
-    }
+   if (![self.arr_Config[0] containsObject:cellName]&&![cellName isEqualToString:@"UITableViewCell"]) {
+       [self setCellNibName:cellName andCellReuseIdentifier:cellName];
+   }
     
     [self.arr_Config[0] addObject:cellName];
     [self.arr_dataSource[0] addObject:object];
@@ -1250,7 +1250,7 @@
             [self endUpdates];
         }
         
-        
+       
     }
     @catch (NSException *exception) {
         NSLog(@"@warning: %@",exception);
@@ -1416,8 +1416,8 @@
 
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    //    UIViewController*viewController=[UtilCommon viewController:self];
-    //    [viewController.view endEditing:YES];
+//    UIViewController*viewController=[UtilCommon viewController:self];
+//    [viewController.view endEditing:YES];
 }
 
 

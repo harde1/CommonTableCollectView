@@ -1,0 +1,17 @@
+{
+  "name": "CommonTableCollectView",
+  "version": "0.0.1",
+  "summary": "A short description of CommonTableCollectView.",
+  "description": "",
+  "homepage": "https://github.com/harde1/CommonTableCollectView",
+  "license": "MIT",
+  "source": {
+    "git": "https://github.com/harde1/CommonTableCollectView.git",
+    "commit": "e8d947b828012d38641b90fb47287af20ca4406f"
+  },
+  "authors": {
+    "剑仁不败": "harde1@163.com",
+    "敏钦": "799621181@qq.com"
+  },
+  "source_files": "CommonTableCollectView/*.{h,m}"
+}
