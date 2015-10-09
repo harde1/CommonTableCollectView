@@ -425,8 +425,6 @@
     }
     
     if (_arr_heads.count==0) {
-        
-        
         return [_arr_section[section] floatValue];
     }else{
         
