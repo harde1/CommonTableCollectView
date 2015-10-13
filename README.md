@@ -6,6 +6,11 @@
 
  pod 'CommonTableCollectView', :git => 'https://github.com/harde1/CommonTableCollectView'
 
+# 作者以及联系方式
+
+梁殿熊  liangdianxiong@163.com
+
+cong    harde1@163.com
 
 #  优点
 
