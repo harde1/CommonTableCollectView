@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0F98C83C9969042263312E12B1C47F7C /* CommonCollectionCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 753BC679BC83B49ECCBB30798691A2C6 /* CommonCollectionCell.h */; };
 		1704BF89C3D97D48D7FF623685A2AA1E /* CommonCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 7169846C1077AB908519313E36C2DECB /* CommonCell.h */; };
+		1FB2D9981BD72FA7001CD052 /* CommonTableCollectView.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FB2D9971BD72FA7001CD052 /* CommonTableCollectView.h */; settings = {ASSET_TAGS = (); }; };
 		203EE86AB3961F1838A02AFCC349A8FD /* CommonTableCollectView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 718302E45EDF5589D853C05720CCBACB /* CommonTableCollectView-dummy.m */; };
 		46F82C0E91BD044F55E3F59D2E9EFE16 /* CommonCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E6B0CCABCE2E6DF7E0DF9C1279600151 /* CommonCollectionView.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		4E6FC01165C0E393B7F497B265060514 /* CommonCollectionView.h in Headers */ = {isa = PBXBuildFile; fileRef = 663856AD910F818D15D15EB25B6B8C1D /* CommonCollectionView.h */; };
@@ -33,6 +34,7 @@
 
 /* Begin PBXFileReference section */
 		0001E07B140343C21E28C2BC988F9514 /* CommonTableView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CommonTableView.h; path = CommonTableCollectView/CommonTableView.h; sourceTree = "<group>"; };
+		1FB2D9971BD72FA7001CD052 /* CommonTableCollectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonTableCollectView.h; path = CommonTableCollectView/CommonTableCollectView.h; sourceTree = "<group>"; };
 		21E8FA152C1FA6BD6DD9C306E3F1E142 /* CommonTableCollectView-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "CommonTableCollectView-Private.xcconfig"; sourceTree = "<group>"; };
 		2A0F0BAA04EBAF0B1E128EDDC10F6892 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		2B09B2BFA899DFA5697EC57B2BB67B12 /* CommonTableView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CommonTableView.m; path = CommonTableCollectView/CommonTableView.m; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 		1E49F701C05D0B838E167D8DD6DF4A99 /* CommonTableCollectView */ = {
 			isa = PBXGroup;
 			children = (
+				1FB2D9971BD72FA7001CD052 /* CommonTableCollectView.h */,
 				7169846C1077AB908519313E36C2DECB /* CommonCell.h */,
 				D6B2EBDC3FA6C57438342648A222E0A1 /* CommonCell.m */,
 				753BC679BC83B49ECCBB30798691A2C6 /* CommonCollectionCell.h */,
@@ -181,6 +184,7 @@
 				0F98C83C9969042263312E12B1C47F7C /* CommonCollectionCell.h in Headers */,
 				4E6FC01165C0E393B7F497B265060514 /* CommonCollectionView.h in Headers */,
 				89413039C501650595B29143AA529F80 /* CommonTableView.h in Headers */,
+				1FB2D9981BD72FA7001CD052 /* CommonTableCollectView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
