@@ -10,14 +10,14 @@
 
 @implementation CommonCell
 
--(void)commonTableView:(CommonTableView *)tableView inViewController:(id)viewController didSelectCellAtIndexPath:(NSIndexPath *)indexPath{
+-(void)commonTableView:(CommonTableView *)tableView inViewController:(UIViewController *)viewController didSelectCellAtIndexPath:(NSIndexPath *)indexPath{
 
 
 
 
 }
 
--(void)commonTableView:(CommonTableView *)tableView inViewController:(id)viewController cellForIndexPath:(NSIndexPath *)indexPath {
+-(void)commonTableView:(CommonTableView *)tableView inViewController:(UIViewController *)viewController cellForIndexPath:(NSIndexPath *)indexPath {
 	
 }
 @end

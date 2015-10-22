@@ -11,11 +11,11 @@
 @implementation CommonCollectionCell
 
 
--(void)commonCollectionView:(CommonCollectionView *)commonCollectionView inViewController:(id)viewController didSelectCellAtIndexPath:(NSIndexPath *)indexPath {
+-(void)commonCollectionView:(CommonCollectionView *)commonCollectionView inViewController:(UIViewController *)viewController didSelectCellAtIndexPath:(NSIndexPath *)indexPath {
 	
 }
 
--(void)commonCollectionView:(CommonCollectionView *)commonCollectionView inViewController:(id)viewController cellForIndexPath:(NSIndexPath *)indexPath {
+-(void)commonCollectionView:(CommonCollectionView *)commonCollectionView inViewController:(UIViewController *)viewController cellForIndexPath:(NSIndexPath *)indexPath {
 	
 }
 
