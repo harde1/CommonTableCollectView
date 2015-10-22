@@ -412,7 +412,7 @@
         [commonCell commonTableView:self inViewController:[self viewController] cellForIndexPath:indexPath];
         
     }else{
-        NSLog(@"warning:没有继承CommonCell");
+//        NSLog(@"warning:没有继承CommonCell");
     }
     
     
@@ -571,7 +571,7 @@
     if (_didSelectRowAtIndexPath) {
         _didSelectRowAtIndexPath(indexPath);
     }else{
-        NSLog(@"warning:没有集成DidSelectRowAtIndexPath block");
+//        NSLog(@"warning:没有集成DidSelectRowAtIndexPath block");
     }
     
     UITableViewCell * cell = [self cellForRowAtIndexPath:indexPath];
@@ -582,7 +582,7 @@
         [commonCell commonTableView:self inViewController:[self viewController] didSelectCellAtIndexPath:indexPath];
         
     }else{
-        NSLog(@"warning:没有继承CommonCell");
+//        NSLog(@"warning:没有继承CommonCell");
     }
 }
 
@@ -602,7 +602,7 @@
     
     str_ClassMeaning = [str_View componentsSeparatedByString:@"_"];
     if (str_ClassMeaning.count<2) {
-        NSLog(@"warining:你的控件名字写错了");
+//        NSLog(@"warining:你的控件名字写错了");
         //        if ([UtilCommon isSimulator]) {
         //            assert(nil);
         //        }
@@ -672,7 +672,7 @@
             }
             else{
                 
-                NSLog(@"waring:数据实体里面不包含--%@ 属性",str_Meaning);
+//                NSLog(@"waring:数据实体里面不包含--%@ 属性",str_Meaning);
                 
             }
             
@@ -694,7 +694,7 @@
         NSString * str_Meaning2;
         str_ClassMeaning = [str_View componentsSeparatedByString:@"_"];
         if (str_ClassMeaning.count<2) {
-            NSLog(@"warining:你的控件名字写错了");
+//            NSLog(@"warining:你的控件名字写错了");
             //            if ([UtilCommon isSimulator]) {
             //                assert(nil);
             //            }
@@ -724,7 +724,7 @@
             }
             else{
                 
-                NSLog(@"waring:数据实体里面不包含--%@ 属性",str_Meaning);
+//                NSLog(@"waring:数据实体里面不包含--%@ 属性",str_Meaning);
                 //                if ([UtilCommon isSimulator]) {
                 //                    //                    assert(nil);
                 //                }

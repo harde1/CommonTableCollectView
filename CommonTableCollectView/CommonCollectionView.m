@@ -189,7 +189,7 @@
         [commonCollectionCell commonCollectionView:self inViewController:[self viewController] cellForIndexPath:indexPath];
         
     }else{
-        NSLog(@"warning:没有继承CommonCell");
+//        NSLog(@"warning:没有继承CommonCell");
     }
 
     
@@ -267,7 +267,7 @@
         if (_didSelectItemAtIndexPath) {
             _didSelectItemAtIndexPath(indexPath);
         }else{
-            NSLog(@"warning:没有集成_didSelectItemAtIndexPath block");
+//            NSLog(@"warning:没有集成_didSelectItemAtIndexPath block");
         }
     
         UICollectionViewCell * cell = [self cellForItemAtIndexPath:indexPath];
@@ -278,7 +278,7 @@
             [commonCollectionCell commonCollectionView:self inViewController:[self viewController] didSelectCellAtIndexPath:indexPath];
     
         }else{
-            NSLog(@"warning:没有继承CommonCell");
+//            NSLog(@"warning:没有继承CommonCell");
         }
 
 
