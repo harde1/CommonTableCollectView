@@ -270,7 +270,7 @@
     
    
     //上下左右
-    UIEdgeInsets top = UIEdgeInsetsFromString(self.dict_dataSourceHeader[insetKey]);
+    UIEdgeInsets top = UIEdgeInsetsFromString(self.dict_insetForSection[insetKey]);
     
     return top;
 }
@@ -591,6 +591,11 @@
     [self.dict_headerSizeSave setObject:NSStringFromCGSize(size) forKey:key];
     
     return size;
+}
+
+-(void)setSection:(NSInteger)section withInset:(UIEdgeInsets)inset {
+     NSString * insetKey = [NSString stringWithFormat:@"section-%ld",section];
+    self.dict_insetForSection[insetKey] = NSStringFromUIEdgeInsets(inset);
 }
 
 @end

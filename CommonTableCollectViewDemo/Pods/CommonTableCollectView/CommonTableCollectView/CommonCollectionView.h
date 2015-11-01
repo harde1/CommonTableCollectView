@@ -55,6 +55,9 @@ typedef void(^DidTouchCollectionView)(UICollectionView * ctv);
 -(void)addNibWithEntity:(id)str_Object andCellName:(NSString *)cellName andSection:(int)section;
 -(void)addClassWithEntity:(id)str_Object andCellName:(NSString *)cellName andSection:(int)section;
 
+//设置每个section的inset
+-(void)setSection:(NSInteger)section withInset:(UIEdgeInsets)inset;
+
 //清空所有数据
 -(void)clearAllData;
 //移除indexpath所在的item的size缓存
