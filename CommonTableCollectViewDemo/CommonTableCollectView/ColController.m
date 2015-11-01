@@ -20,6 +20,8 @@
     [super viewDidLoad];
 //    CGSize size = {100,200};
 //    _cv_text.headSize = size;
+    
+    
 //    [_cv_text addHeaderNibWithEntity:@{} andViewName:@"Rev_col" andSection:0];
     for (int i=0; i<10; i++) {
     

@@ -10,6 +10,7 @@
 #import "CommonCollectionCell.h"
 
 typedef void(^CollectionViewCellAtIndexPath)(UICollectionViewCell * cell, NSIndexPath * indexPath);
+typedef void(^ViewForSupplementaryElementOfKindInSection)(UICollectionReusableView * view, NSString * king,NSInteger section);
 typedef void(^DidSelectItemAtIndexPath)(NSIndexPath * indexPath);
 typedef void(^DidTouchCollectionView)(UICollectionView * ctv);
 
@@ -40,6 +41,7 @@ typedef void(^DidTouchCollectionView)(UICollectionView * ctv);
 
 //block，给cell附加方法
 @property(nonatomic,copy)CollectionViewCellAtIndexPath collectionViewCellAtIndexPath;
+@property(nonatomic,copy)ViewForSupplementaryElementOfKindInSection viewForSupplementaryElementOfKindInSection;
 @property(nonatomic,copy)DidSelectItemAtIndexPath didSelectItemAtIndexPath;
 //触摸到就触发了，例如可以用来回收键盘
 @property(nonatomic,copy)DidTouchCollectionView didTouchCollectionView;
@@ -73,6 +75,8 @@ typedef void(^DidTouchCollectionView)(UICollectionView * ctv);
 //插入头
 -(void)addHeaderNibWithEntity:(id)str_Object andViewName:(NSString *)viewName andSection:(int)section;
 -(void)addHeaderClassWithEntity:(id)str_Object andViewName:(NSString *)viewName andSection:(int)section;
+//头数据源头处理位置
+-(void)setViewForSupplementaryElementOfKindInSection:(ViewForSupplementaryElementOfKindInSection)viewForSupplementaryElementOfKindInSection;
 
 
 @end

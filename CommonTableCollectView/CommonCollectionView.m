@@ -7,6 +7,7 @@
 //
 
 #import "CommonCollectionView.h"
+#import "CommonRView.h"
 
 
 @implementation CommonCollectionView
@@ -469,6 +470,10 @@
     _didSelectItemAtIndexPath = didSelectItemAtIndexPath;
     
 }
+-(void)setViewForSupplementaryElementOfKindInSection:(ViewForSupplementaryElementOfKindInSection)viewForSupplementaryElementOfKindInSection{
+
+    _viewForSupplementaryElementOfKindInSection = viewForSupplementaryElementOfKindInSection;
+}
 
 -(void)addHeaderNibWithEntity:(id)str_Object andViewName:(NSString *)viewName andSection:(int)section {
  NSString * key = [NSString stringWithFormat:@"%@-%d",UICollectionElementKindSectionHeader,section];
@@ -506,10 +511,24 @@
         return nil;
     }
     
-    
-    
-
     UICollectionReusableView * rev = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:viewName forIndexPath:indexPath];
+    
+    
+    if ([rev isKindOfClass:[CommonRView class]]) {
+        CommonRView * rev2 = (CommonRView *)rev;
+        rev2.section = indexPath.section;
+        rev2.params = self.dict_dataSourceHeader[key];
+    }
+    
+    if (_viewForSupplementaryElementOfKindInSection) {
+        _viewForSupplementaryElementOfKindInSection(rev,UICollectionElementKindSectionHeader,indexPath.section);
+    }
+    
+    
+    if ([rev isKindOfClass:[CommonRView class]]) {
+        CommonRView * rev2 = (CommonRView *)rev;
+        [rev2 commonCollectionView:self inViewController:[self viewController] viewForSupplementaryElementOfKind:UICollectionElementKindSectionHeader inSection:indexPath.section];
+    }
     
     return rev;
 }
@@ -543,6 +562,22 @@
         _revTemp = [[[NSBundle mainBundle]loadNibNamed:viewName owner:self options:nil] firstObject];
     }
     
+    
+    if ([_revTemp isKindOfClass:[CommonRView class]]) {
+        CommonRView * rev = (CommonRView *)_revTemp;
+        rev.section = section;
+        rev.params = self.dict_dataSourceHeader[key];
+    }
+    
+    
+    if (_viewForSupplementaryElementOfKindInSection) {
+        _viewForSupplementaryElementOfKindInSection(_revTemp,UICollectionElementKindSectionHeader,section);
+    }
+  
+    if ([_revTemp isKindOfClass:[CommonRView class]]) {
+    CommonRView * rev = (CommonRView *)_revTemp;
+        [rev commonCollectionView:self inViewController:[self viewController] viewForSupplementaryElementOfKind:UICollectionElementKindSectionHeader inSection:section];
+    }
     
     [_revTemp layoutIfNeeded];
     [_revTemp updateConstraints];

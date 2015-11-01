@@ -8,6 +8,12 @@
 
 #import "CommonRView.h"
 
+
 @implementation CommonRView
+
+
+-(void)commonCollectionView:(CommonCollectionView *)cv inViewController:(UIViewController *)vc viewForSupplementaryElementOfKind:(NSString *)king inSection:(NSInteger)section {
+    
+}
 
 @end

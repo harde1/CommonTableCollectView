@@ -12,7 +12,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   CommonTableCollectView:
-    :commit: 275678fbe679335a5ab573e97cd11a2b83cd707d
+    :commit: 425235aa6a1754b84022753d88da211d86c2fd69
     :git: https://github.com/harde1/CommonTableCollectView
 
 SPEC CHECKSUMS:
