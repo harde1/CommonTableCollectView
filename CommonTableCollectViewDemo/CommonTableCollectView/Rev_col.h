@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface Rev_col : UICollectionReusableView
+#import "CommonRView.h"
+@interface Rev_col : CommonRView
+@property (weak, nonatomic) IBOutlet UILabel *lb_text;
 
 @end

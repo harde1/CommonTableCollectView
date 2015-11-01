@@ -14,4 +14,12 @@
     // Initialization code
 }
 
+-(void)setParams:(id)params{
+    [super setParams:params];
+
+    
+    if (params) {
+        self.lb_text.text = params[@"title"];
+    }
+}
 @end

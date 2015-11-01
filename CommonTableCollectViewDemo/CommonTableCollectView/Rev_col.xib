@@ -6,7 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR">
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR" customClass="Rev_col">
             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
@@ -29,6 +29,9 @@
                 <constraint firstAttribute="trailing" secondItem="wWs-qy-87v" secondAttribute="trailing" id="gjK-nW-lNM"/>
                 <constraint firstItem="wWs-qy-87v" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="q2k-1E-5Ib"/>
             </constraints>
+            <connections>
+                <outlet property="lb_text" destination="wWs-qy-87v" id="R5V-ep-yow"/>
+            </connections>
             <point key="canvasLocation" x="127" y="246"/>
         </collectionReusableView>
     </objects>
