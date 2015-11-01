@@ -1,8 +1,10 @@
 PODS:
   - CommonTableCollectView (0.0.1)
+  - Masonry (0.6.3)
 
 DEPENDENCIES:
   - CommonTableCollectView (from `https://github.com/harde1/CommonTableCollectView`)
+  - Masonry (~> 0.6.3)
 
 EXTERNAL SOURCES:
   CommonTableCollectView:
@@ -10,10 +12,11 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   CommonTableCollectView:
-    :commit: 90e08ca2c9296369696ba147286bf0ac74b60a37
+    :commit: 275678fbe679335a5ab573e97cd11a2b83cd707d
     :git: https://github.com/harde1/CommonTableCollectView
 
 SPEC CHECKSUMS:
   CommonTableCollectView: 113703763cc2bce22b5aa14b86396e208fb20747
+  Masonry: ff105a956abcd19a618b2028b121cb638d7a8e2f
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.39.0

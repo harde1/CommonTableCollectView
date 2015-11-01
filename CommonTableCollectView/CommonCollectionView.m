@@ -27,6 +27,15 @@
             self.arr_identifierConfig = [@[[@[] mutableCopy]]mutableCopy];
         }
         
+        if (!_dict_dataSourceHeader) {
+            _dict_dataSourceHeader = [@{}mutableCopy];
+        }
+        
+        if (!_dict_identifierHeader) {
+            _dict_identifierHeader = [@{}mutableCopy];
+        }
+        
+        
         if (!_arr_insetForSection) {
             
             UIEdgeInsets top = UIEdgeInsetsZero;
@@ -50,6 +59,14 @@
         }
         if (!_arr_identifierConfig) {
             self.arr_identifierConfig = [@[[@[] mutableCopy]]mutableCopy];
+        }
+        
+        if (!_dict_dataSourceHeader) {
+            _dict_dataSourceHeader = [@{}mutableCopy];
+        }
+        
+        if (!_dict_identifierHeader) {
+            _dict_identifierHeader = [@{}mutableCopy];
         }
         
         if (!_arr_insetForSection) {
@@ -77,6 +94,14 @@
             self.arr_identifierConfig = [@[[@[] mutableCopy]]mutableCopy];
         }
         
+        if (!_dict_dataSourceHeader) {
+            _dict_dataSourceHeader = [@{}mutableCopy];
+        }
+        
+        if (!_dict_identifierHeader) {
+            _dict_identifierHeader = [@{}mutableCopy];
+        }
+        
         if (!_arr_insetForSection) {
             
             UIEdgeInsets top = UIEdgeInsetsZero;
@@ -96,7 +121,14 @@
     return _dict_heightSave;
 }
 
-
+-(NSMutableDictionary *)dict_headerSizeSave{
+    
+    if (!_dict_headerSizeSave) {
+        _dict_headerSizeSave = [@{}mutableCopy];
+    }
+    
+    return _dict_headerSizeSave;
+}
 
 
 #pragma mark 添加cell
@@ -123,20 +155,50 @@
 }
 -(void)addNibWithEntity:(id)object andCellName:(NSString *)cellName andSection:(int)section {
     
+    for (int i=0; i<=section; i++) {
+        if (section>=self.arr_identifierConfig.count) {
+            [self.arr_identifierConfig addObject:[@[]mutableCopy]];
+        }
+        if (section>=self.arr_dataSource.count) {
+            [self.arr_dataSource addObject:[@[]mutableCopy]];
+        }
+    }
+    
     if (![self.arr_identifierConfig[section] containsObject:cellName]&&![cellName isEqualToString:@"UICollectionViewCell"]) {
         [self setCellNibName:cellName andCellReuseIdentifier:cellName];
     }
+    
+    
+    
+   
+    
     [self.arr_identifierConfig[section] addObject:cellName];
+    
     [self.arr_dataSource[section] addObject:object];
+    
     if (!_closeAutoReload) {
         [self reloadData];
     }
 }
 
 -(void)addClassWithEntity:(id)object andCellName:(NSString *)cellName andSection:(int)section {
+    
+    for (int i=0; i<=section; i++) {
+        if (section>=self.arr_identifierConfig.count) {
+            [self.arr_identifierConfig addObject:[@[]mutableCopy]];
+        }
+        
+        if (section>=self.arr_dataSource.count) {
+            [self.arr_dataSource addObject:[@[]mutableCopy]];
+        }
+    }
+    
     if (![self.arr_identifierConfig[section] containsObject:cellName]&&![cellName isEqualToString:@"UICollectionViewCell"]) {
         [self setCellClass:cellName andCellReuseIdentifier:cellName];
     }
+    
+   
+    
     [self.arr_identifierConfig[section] addObject:cellName];
     [self.arr_dataSource[section] addObject:object];
     if (!_closeAutoReload) {
@@ -199,6 +261,10 @@
 //设置元素的的大小框
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
     //每个section一个
+    if (section>=self.arr_insetForSection.count) {
+        return UIEdgeInsetsZero;
+    }
+    
     
     //上下左右
     UIEdgeInsets top = UIEdgeInsetsFromString(self.arr_insetForSection[section]);
@@ -402,6 +468,92 @@
     _collectionViewCellAtIndexPath = collectionViewCellAtIndexPath;
     _didSelectItemAtIndexPath = didSelectItemAtIndexPath;
     
+}
+
+-(void)addHeaderNibWithEntity:(id)str_Object andViewName:(NSString *)viewName andSection:(int)section {
+ NSString * key = [NSString stringWithFormat:@"%@-%d",UICollectionElementKindSectionHeader,section];
+    
+    
+        [self registerNib:[UINib nibWithNibName:viewName bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:viewName];
+    self.dict_identifierHeader[key] = viewName;
+
+    self.dict_dataSourceHeader[key] = str_Object;
+    
+    if (!_closeAutoReload) {
+        [self reloadData];
+    }
+}
+
+-(void)addHeaderClassWithEntity:(id)str_Object andViewName:(NSString *)viewName andSection:(int)section {
+    NSString * key = [NSString stringWithFormat:@"%@-%d",UICollectionElementKindSectionHeader,section];
+        [self registerClass:NSClassFromString(viewName) forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:viewName];
+    
+    self.dict_identifierHeader[key] = viewName;
+    
+    self.dict_dataSourceHeader[key] = str_Object;
+    if (!_closeAutoReload) {
+        [self reloadData];
+    }
+    
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+ NSString * key = [NSString stringWithFormat:@"%@-%ld",UICollectionElementKindSectionHeader,indexPath.section];
+    NSString * viewName = self.dict_identifierHeader[key];
+    if (!viewName) {
+        
+        return nil;
+    }
+    
+    
+    
+
+    UICollectionReusableView * rev = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:viewName forIndexPath:indexPath];
+    
+    return rev;
+}
+
+//返回头headerView的大小
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
+     NSString * key = [NSString stringWithFormat:@"%@-%ld",UICollectionElementKindSectionHeader,section];
+    
+    NSString * viewName = self.dict_identifierHeader[key];
+    if (!CGSizeEqualToSize(_headSize, CGSizeZero)) {
+        return _headSize;
+    }
+
+    
+    CGSize size = CGSizeZero;
+    
+    if (!viewName) {
+        
+        return size;
+    }
+    
+    NSString * key2 = [NSString stringWithFormat:@"UICollectionViewHead-%ld",(long)section];
+    
+    if (self.dict_headerSizeSave[key]) {
+        size =CGSizeFromString(self.dict_headerSizeSave[key2]);
+        return size;
+    }
+    
+    
+    if (!_revTemp) {
+        _revTemp = [[[NSBundle mainBundle]loadNibNamed:viewName owner:self options:nil] firstObject];
+    }
+    
+    
+    [_revTemp layoutIfNeeded];
+    [_revTemp updateConstraints];
+    [_revTemp setNeedsUpdateConstraints];
+    [_revTemp updateConstraintsIfNeeded];
+    
+    size = [_revTemp systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    
+    [self.dict_headerSizeSave setObject:NSStringFromCGSize(size) forKey:key];
+    
+    return size;
 }
 
 @end

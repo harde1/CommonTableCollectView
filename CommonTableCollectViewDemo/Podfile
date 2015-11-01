@@ -3,6 +3,8 @@
 
 target 'CommonTableCollectView' do
 pod 'CommonTableCollectView', :git => 'https://github.com/harde1/CommonTableCollectView'
+
+pod 'Masonry', '~> 0.6.3'
 end
 
 target 'CommonTableCollectViewTests' do

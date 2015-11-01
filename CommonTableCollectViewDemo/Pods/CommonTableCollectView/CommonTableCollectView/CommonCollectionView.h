@@ -17,18 +17,32 @@ typedef void(^DidTouchCollectionView)(UICollectionView * ctv);
 
 //数据源
 @property(nonatomic,strong)NSMutableArray * arr_dataSource;
+@property(nonatomic,strong)NSMutableDictionary * dict_dataSourceHeader;
+
+
 @property(nonatomic,strong)NSMutableDictionary * dict_heightSave;
+@property(nonatomic,strong)NSMutableDictionary * dict_headerSizeSave;
+
+
 @property(nonatomic,strong)NSArray * arr_sectionHeaderHeight;
 @property(nonatomic,strong)NSMutableArray * arr_insetForSection;
-@property(nonatomic,strong)NSMutableArray * arr_identifierConfig;//cell设置,identifier
+//cell设置,identifier
+@property(nonatomic,strong)NSMutableArray * arr_identifierConfig;
+
+@property(nonatomic,strong)NSMutableDictionary * dict_identifierHeader;
+
+
 @property(nonatomic,strong)UICollectionViewCell * cell_temp;
+@property(nonatomic,strong)UICollectionReusableView * revTemp;
 
 @property(nonatomic,assign)CGSize itemSize;
+@property(nonatomic,assign)CGSize headSize;
 
-//block
-@property(nonatomic,copy)CollectionViewCellAtIndexPath collectionViewCellAtIndexPath; //给cell附加方法
+//block，给cell附加方法
+@property(nonatomic,copy)CollectionViewCellAtIndexPath collectionViewCellAtIndexPath;
 @property(nonatomic,copy)DidSelectItemAtIndexPath didSelectItemAtIndexPath;
-@property(nonatomic,copy)DidTouchCollectionView didTouchCollectionView; //触摸到就触发了，例如可以用来回收键盘
+//触摸到就触发了，例如可以用来回收键盘
+@property(nonatomic,copy)DidTouchCollectionView didTouchCollectionView;
 
 @property(nonatomic)BOOL closeAutoReload;
 
@@ -39,18 +53,26 @@ typedef void(^DidTouchCollectionView)(UICollectionView * ctv);
 -(void)addNibWithEntity:(id)str_Object andCellName:(NSString *)cellName andSection:(int)section;
 -(void)addClassWithEntity:(id)str_Object andCellName:(NSString *)cellName andSection:(int)section;
 
-//清空数据
--(void)clearAllData;//清空所有数据
--(void)removeSizeByIndexPath:(NSIndexPath *)indexPath;//移除indexpath所在的item的size缓存
--(void)removeSize;//移除所有size的缓存
+//清空所有数据
+-(void)clearAllData;
+//移除indexpath所在的item的size缓存
+-(void)removeSizeByIndexPath:(NSIndexPath *)indexPath;
+//移除所有size的缓存
+-(void)removeSize;
 
 //插入一个item和移除一个item
 -(void)insertIndexPath:(NSIndexPath *)indexPath withNibWithEntity:(id)object andCellName:(NSString *)cellName;
-
--(void)removeIndexPath:(NSIndexPath *)indexPath andCellName:(NSString *)cellName;//进行判断类型是否准确再删除
+//进行判断类型是否准确再删除
+-(void)removeIndexPath:(NSIndexPath *)indexPath andCellName:(NSString *)cellName;
 
 -(void)removeIndexPath:(NSIndexPath *)indexPath;
 
 //didSelect和itemforIndexpath的block
 -(void)commonCollectionViewCellAtIndexPath:(CollectionViewCellAtIndexPath)cellAtIndexPath andDidSelectRowAtIndexPath:(DidSelectItemAtIndexPath)didSelectRowAtIndexPath;
+
+//插入头
+-(void)addHeaderNibWithEntity:(id)str_Object andViewName:(NSString *)viewName andSection:(int)section;
+-(void)addHeaderClassWithEntity:(id)str_Object andViewName:(NSString *)viewName andSection:(int)section;
+
+
 @end

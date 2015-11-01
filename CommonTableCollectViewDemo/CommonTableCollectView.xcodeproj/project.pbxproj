@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F1C72D01BE667E8009DC58B /* Rev_col.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1C72CE1BE667E8009DC58B /* Rev_col.m */; };
+		1F1C72D11BE667E8009DC58B /* Rev_col.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F1C72CF1BE667E8009DC58B /* Rev_col.xib */; };
+		1F57D45A1BE4A46900BE88A7 /* Cell_col.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F57D4581BE4A46900BE88A7 /* Cell_col.m */; };
+		1F57D45B1BE4A46900BE88A7 /* Cell_col.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F57D4591BE4A46900BE88A7 /* Cell_col.xib */; };
+		1F57D45E1BE4A54300BE88A7 /* ColController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F57D45D1BE4A54300BE88A7 /* ColController.m */; };
 		502873518E6FF112B48173A6 /* libPods-CommonTableCollectView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB2E63AAA7E645EE969E41C4 /* libPods-CommonTableCollectView.a */; };
 		F47E586C1BC7B5C300D1633A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F47E586B1BC7B5C300D1633A /* main.m */; };
 		F47E586F1BC7B5C300D1633A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F47E586E1BC7B5C300D1633A /* AppDelegate.m */; };
@@ -16,8 +21,8 @@
 		F47E587A1BC7B5C300D1633A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F47E58781BC7B5C300D1633A /* LaunchScreen.storyboard */; };
 		F47E58851BC7B5C300D1633A /* CommonTableCollectViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F47E58841BC7B5C300D1633A /* CommonTableCollectViewTests.m */; };
 		F47E58901BC7B5C300D1633A /* CommonTableCollectViewUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F47E588F1BC7B5C300D1633A /* CommonTableCollectViewUITests.m */; };
-		F47E58A01BC7D21C00D1633A /* Cell_test.m in Sources */ = {isa = PBXBuildFile; fileRef = F47E589E1BC7D21C00D1633A /* Cell_test.m */; settings = {ASSET_TAGS = (); }; };
-		F47E58A11BC7D21C00D1633A /* Cell_test.xib in Resources */ = {isa = PBXBuildFile; fileRef = F47E589F1BC7D21C00D1633A /* Cell_test.xib */; settings = {ASSET_TAGS = (); }; };
+		F47E58A01BC7D21C00D1633A /* Cell_test.m in Sources */ = {isa = PBXBuildFile; fileRef = F47E589E1BC7D21C00D1633A /* Cell_test.m */; };
+		F47E58A11BC7D21C00D1633A /* Cell_test.xib in Resources */ = {isa = PBXBuildFile; fileRef = F47E589F1BC7D21C00D1633A /* Cell_test.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +43,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F1C72CD1BE667E7009DC58B /* Rev_col.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rev_col.h; sourceTree = "<group>"; };
+		1F1C72CE1BE667E8009DC58B /* Rev_col.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rev_col.m; sourceTree = "<group>"; };
+		1F1C72CF1BE667E8009DC58B /* Rev_col.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Rev_col.xib; sourceTree = "<group>"; };
+		1F57D4571BE4A46900BE88A7 /* Cell_col.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell_col.h; sourceTree = "<group>"; };
+		1F57D4581BE4A46900BE88A7 /* Cell_col.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell_col.m; sourceTree = "<group>"; };
+		1F57D4591BE4A46900BE88A7 /* Cell_col.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Cell_col.xib; sourceTree = "<group>"; };
+		1F57D45C1BE4A54300BE88A7 /* ColController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColController.h; sourceTree = "<group>"; };
+		1F57D45D1BE4A54300BE88A7 /* ColController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColController.m; sourceTree = "<group>"; };
 		66BF1E8C44369D28E612E158 /* Pods-CommonTableCollectView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommonTableCollectView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CommonTableCollectView/Pods-CommonTableCollectView.debug.xcconfig"; sourceTree = "<group>"; };
 		CB2E63AAA7E645EE969E41C4 /* libPods-CommonTableCollectView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CommonTableCollectView.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE04E84CB95CD47A92090C1E /* Pods-CommonTableCollectView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommonTableCollectView.release.xcconfig"; path = "Pods/Target Support Files/Pods-CommonTableCollectView/Pods-CommonTableCollectView.release.xcconfig"; sourceTree = "<group>"; };
@@ -134,6 +147,14 @@
 				F47E586E1BC7B5C300D1633A /* AppDelegate.m */,
 				F47E58701BC7B5C300D1633A /* ViewController.h */,
 				F47E58711BC7B5C300D1633A /* ViewController.m */,
+				1F57D45C1BE4A54300BE88A7 /* ColController.h */,
+				1F57D45D1BE4A54300BE88A7 /* ColController.m */,
+				1F1C72CD1BE667E7009DC58B /* Rev_col.h */,
+				1F1C72CE1BE667E8009DC58B /* Rev_col.m */,
+				1F1C72CF1BE667E8009DC58B /* Rev_col.xib */,
+				1F57D4571BE4A46900BE88A7 /* Cell_col.h */,
+				1F57D4581BE4A46900BE88A7 /* Cell_col.m */,
+				1F57D4591BE4A46900BE88A7 /* Cell_col.xib */,
 				F47E589D1BC7D21C00D1633A /* Cell_test.h */,
 				F47E589E1BC7D21C00D1633A /* Cell_test.m */,
 				F47E589F1BC7D21C00D1633A /* Cell_test.xib */,
@@ -184,6 +205,7 @@
 				F47E58641BC7B5C300D1633A /* Frameworks */,
 				F47E58651BC7B5C300D1633A /* Resources */,
 				8E75760DAB6EF320E830FA56 /* Copy Pods Resources */,
+				5AB9A4B38BB49D2A3504F6F1 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -280,6 +302,8 @@
 				F47E587A1BC7B5C300D1633A /* LaunchScreen.storyboard in Resources */,
 				F47E58A11BC7D21C00D1633A /* Cell_test.xib in Resources */,
 				F47E58771BC7B5C300D1633A /* Assets.xcassets in Resources */,
+				1F57D45B1BE4A46900BE88A7 /* Cell_col.xib in Resources */,
+				1F1C72D11BE667E8009DC58B /* Rev_col.xib in Resources */,
 				F47E58751BC7B5C300D1633A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -301,6 +325,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		5AB9A4B38BB49D2A3504F6F1 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CommonTableCollectView/Pods-CommonTableCollectView-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		8E75760DAB6EF320E830FA56 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -339,7 +378,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F47E58721BC7B5C300D1633A /* ViewController.m in Sources */,
+				1F1C72D01BE667E8009DC58B /* Rev_col.m in Sources */,
 				F47E58A01BC7D21C00D1633A /* Cell_test.m in Sources */,
+				1F57D45E1BE4A54300BE88A7 /* ColController.m in Sources */,
+				1F57D45A1BE4A46900BE88A7 /* Cell_col.m in Sources */,
 				F47E586F1BC7B5C300D1633A /* AppDelegate.m in Sources */,
 				F47E586C1BC7B5C300D1633A /* main.m in Sources */,
 			);

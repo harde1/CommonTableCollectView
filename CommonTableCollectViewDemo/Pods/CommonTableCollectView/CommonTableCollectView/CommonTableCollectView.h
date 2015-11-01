@@ -12,6 +12,7 @@
 #import "CommonTableView.h"
 #import "CommonCollectionView.h"
 #import "CommonCell.h"
+
 #import "CommonCollectionCell.h"
 
 #endif /* CommonTableCollectView_h */
