@@ -37,10 +37,10 @@
         }
         
         
-        if (!_arr_insetForSection) {
+        if (!_dict_insetForSection) {
             
             UIEdgeInsets top = UIEdgeInsetsZero;
-            self.arr_insetForSection = [@[NSStringFromUIEdgeInsets(top)]mutableCopy];
+            self.dict_insetForSection = [@{} mutableCopy];
         }
     }
     return self;
@@ -70,10 +70,10 @@
             _dict_identifierHeader = [@{}mutableCopy];
         }
         
-        if (!_arr_insetForSection) {
+        if (!_dict_insetForSection) {
             
-            UIEdgeInsets top = {0,0,0,0};
-            self.arr_insetForSection = [@[NSStringFromUIEdgeInsets(top)]mutableCopy];
+            UIEdgeInsets top = UIEdgeInsetsZero;
+            self.dict_insetForSection = [@{} mutableCopy];
         }
         
     }
@@ -103,10 +103,10 @@
             _dict_identifierHeader = [@{}mutableCopy];
         }
         
-        if (!_arr_insetForSection) {
+        if (!_dict_insetForSection) {
             
             UIEdgeInsets top = UIEdgeInsetsZero;
-            self.arr_insetForSection = [@[NSStringFromUIEdgeInsets(top)]mutableCopy];
+            self.dict_insetForSection = [@{} mutableCopy];
         }
         
     }
@@ -262,13 +262,15 @@
 //设置元素的的大小框
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
     //每个section一个
-    if (section>=self.arr_insetForSection.count) {
+    NSString * insetKey = [NSString stringWithFormat:@"section-%ld",section];
+    
+    if (!self.dict_insetForSection[insetKey]) {
         return UIEdgeInsetsZero;
     }
     
-    
+   
     //上下左右
-    UIEdgeInsets top = UIEdgeInsetsFromString(self.arr_insetForSection[section]);
+    UIEdgeInsets top = UIEdgeInsetsFromString(self.dict_dataSourceHeader[insetKey]);
     
     return top;
 }

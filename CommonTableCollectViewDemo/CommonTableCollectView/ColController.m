@@ -43,9 +43,6 @@
         
         rev_col.lb_text.text = @"11111";
         
-        
-       
-        
     }];
     
 }
