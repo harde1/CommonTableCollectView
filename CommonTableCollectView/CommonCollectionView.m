@@ -37,10 +37,10 @@
         }
         
         
-        if (!_arr_insetForSection) {
+        if (!_dict_insetForSection) {
             
             UIEdgeInsets top = UIEdgeInsetsZero;
-            self.arr_insetForSection = [@[NSStringFromUIEdgeInsets(top)]mutableCopy];
+            self.dict_insetForSection = [@{} mutableCopy];
         }
     }
     return self;
@@ -54,7 +54,7 @@
         //省略
         self.delegate = self;
         self.dataSource = self;
-
+        
         if (!_arr_dataSource) {
             self.arr_dataSource = [@[[@[] mutableCopy]]mutableCopy];
         }
@@ -70,10 +70,10 @@
             _dict_identifierHeader = [@{}mutableCopy];
         }
         
-        if (!_arr_insetForSection) {
+        if (!_dict_insetForSection) {
             
-            UIEdgeInsets top = {0,0,0,0};
-            self.arr_insetForSection = [@[NSStringFromUIEdgeInsets(top)]mutableCopy];
+            UIEdgeInsets top = UIEdgeInsetsZero;
+            self.dict_insetForSection = [@{} mutableCopy];
         }
         
     }
@@ -103,10 +103,10 @@
             _dict_identifierHeader = [@{}mutableCopy];
         }
         
-        if (!_arr_insetForSection) {
+        if (!_dict_insetForSection) {
             
             UIEdgeInsets top = UIEdgeInsetsZero;
-            self.arr_insetForSection = [@[NSStringFromUIEdgeInsets(top)]mutableCopy];
+            self.dict_insetForSection = [@{} mutableCopy];
         }
         
     }
@@ -141,8 +141,6 @@
 }
 -(void)setCellNibName:(NSString *)str_CellName andCellReuseIdentifier:(NSString *)str_Identifier{
     
-
-    
     [self registerNib:[UINib nibWithNibName:str_CellName bundle:nil] forCellWithReuseIdentifier:str_Identifier];
 }
 
@@ -171,7 +169,7 @@
     
     
     
-   
+    
     
     [self.arr_identifierConfig[section] addObject:cellName];
     
@@ -198,7 +196,7 @@
         [self setCellClass:cellName andCellReuseIdentifier:cellName];
     }
     
-   
+    
     
     [self.arr_identifierConfig[section] addObject:cellName];
     [self.arr_dataSource[section] addObject:object];
@@ -244,7 +242,7 @@
     
     
     
-
+    
     if ([cell isKindOfClass:[CommonCollectionCell class]]) {
         
         
@@ -252,9 +250,9 @@
         [commonCollectionCell commonCollectionView:self inViewController:[self viewController] cellForIndexPath:indexPath];
         
     }else{
-//        NSLog(@"warning:没有继承CommonCell");
+        //        NSLog(@"warning:没有继承CommonCell");
     }
-
+    
     
     
     return cell;
@@ -262,13 +260,15 @@
 //设置元素的的大小框
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
     //每个section一个
-    if (section>=self.arr_insetForSection.count) {
+    NSString * insetKey = [NSString stringWithFormat:@"section-%ld",section];
+    
+    if (!self.dict_insetForSection[insetKey]) {
         return UIEdgeInsetsZero;
     }
     
     
     //上下左右
-    UIEdgeInsets top = UIEdgeInsetsFromString(self.arr_insetForSection[section]);
+    UIEdgeInsets top = UIEdgeInsetsFromString(self.dict_insetForSection[insetKey]);
     
     return top;
 }
@@ -282,11 +282,11 @@
     }
     
     
-     CGSize size = CGSizeZero;
+    CGSize size = CGSizeZero;
     
     
     NSString * key = [NSString stringWithFormat:@"UICollectionView-%ld,%ld",(long)indexPath.section,(long)indexPath.row];
-   
+    
     if (self.dict_heightSave[key]) {
         size =CGSizeFromString(self.dict_heightSave[key]);
         
@@ -299,7 +299,7 @@
     }
     cell = self.cell_temp;
     
-
+    
     
     SEL myIndexPathGetMothon = NSSelectorFromString(@"myIndexPath");
     if ([cell respondsToSelector:myIndexPathGetMothon]) {
@@ -323,7 +323,7 @@
     
     size = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     
-
+    
     [self.dict_heightSave setObject:NSStringFromCGSize(size) forKey:key];
     
     return size;
@@ -331,24 +331,24 @@
 
 //互动
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-        if (_didSelectItemAtIndexPath) {
-            _didSelectItemAtIndexPath(indexPath);
-        }else{
-//            NSLog(@"warning:没有集成_didSelectItemAtIndexPath block");
-        }
+    if (_didSelectItemAtIndexPath) {
+        _didSelectItemAtIndexPath(indexPath);
+    }else{
+        //            NSLog(@"warning:没有集成_didSelectItemAtIndexPath block");
+    }
     
-        UICollectionViewCell * cell = [self cellForItemAtIndexPath:indexPath];
-        if ([cell isKindOfClass:[CommonCollectionCell class]]) {
+    UICollectionViewCell * cell = [self cellForItemAtIndexPath:indexPath];
+    if ([cell isKindOfClass:[CommonCollectionCell class]]) {
+        
+        
+        CommonCollectionCell * commonCollectionCell = (CommonCollectionCell *)cell;
+        [commonCollectionCell commonCollectionView:self inViewController:[self viewController] didSelectCellAtIndexPath:indexPath];
+        
+    }else{
+        //            NSLog(@"warning:没有继承CommonCell");
+    }
     
     
-            CommonCollectionCell * commonCollectionCell = (CommonCollectionCell *)cell;
-            [commonCollectionCell commonCollectionView:self inViewController:[self viewController] didSelectCellAtIndexPath:indexPath];
-    
-        }else{
-//            NSLog(@"warning:没有继承CommonCell");
-        }
-
-
 }
 
 - (UIViewController *)viewController {
@@ -409,9 +409,9 @@
 -(void)insertIndexPath:(NSIndexPath *)indexPath withNibWithEntity:(id)object andCellName:(NSString *)cellName{
     
     
-    if (![self.arr_identifierConfig[indexPath.section] containsObject:cellName]) {
-        [self setCellNibName:cellName andCellReuseIdentifier:cellName];
-    }
+    //    if (![self.arr_identifierConfig[indexPath.section] containsObject:cellName]) {
+    [self setCellNibName:cellName andCellReuseIdentifier:cellName];
+    //    }
     
     [self.arr_identifierConfig[indexPath.section] insertObject:cellName atIndex:indexPath.row];
     [self.arr_dataSource[indexPath.section] insertObject:object atIndex:indexPath.row];
@@ -419,7 +419,7 @@
     [self removeSize];
     
     [self insertItemsAtIndexPaths:@[indexPath]];
-
+    
 }
 -(void)removeIndexPath:(NSIndexPath *)indexPath andCellName:(NSString *)cellName{
     
@@ -433,7 +433,7 @@
             
             [self deleteItemsAtIndexPaths:@[indexPath]];
         }
-
+        
     }
     @catch (NSException *exception) {
         NSLog(@"@warning: %@",exception);
@@ -452,7 +452,7 @@
         [self.arr_dataSource[indexPath.section] removeObjectAtIndex:indexPath.row];
         [self removeSize];
         [self deleteItemsAtIndexPaths:@[indexPath]];
-
+        
     }
     @catch (NSException *exception) {
         NSLog(@"@warning: %@",exception);
@@ -465,23 +465,23 @@
 
 #pragma mark didSelect和itemforIndexpath的block
 -(void)commonCollectionViewCellAtIndexPath:(CollectionViewCellAtIndexPath)collectionViewCellAtIndexPath andDidSelectRowAtIndexPath:(DidSelectItemAtIndexPath)didSelectItemAtIndexPath {
-	
+    
     _collectionViewCellAtIndexPath = collectionViewCellAtIndexPath;
     _didSelectItemAtIndexPath = didSelectItemAtIndexPath;
     
 }
 -(void)setViewForSupplementaryElementOfKindInSection:(ViewForSupplementaryElementOfKindInSection)viewForSupplementaryElementOfKindInSection{
-
+    
     _viewForSupplementaryElementOfKindInSection = viewForSupplementaryElementOfKindInSection;
 }
 
 -(void)addHeaderNibWithEntity:(id)str_Object andViewName:(NSString *)viewName andSection:(int)section {
- NSString * key = [NSString stringWithFormat:@"%@-%d",UICollectionElementKindSectionHeader,section];
+    NSString * key = [NSString stringWithFormat:@"%@-%d",UICollectionElementKindSectionHeader,section];
     
     
-        [self registerNib:[UINib nibWithNibName:viewName bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:viewName];
+    [self registerNib:[UINib nibWithNibName:viewName bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:viewName];
     self.dict_identifierHeader[key] = viewName;
-
+    
     self.dict_dataSourceHeader[key] = str_Object;
     
     if (!_closeAutoReload) {
@@ -491,7 +491,7 @@
 
 -(void)addHeaderClassWithEntity:(id)str_Object andViewName:(NSString *)viewName andSection:(int)section {
     NSString * key = [NSString stringWithFormat:@"%@-%d",UICollectionElementKindSectionHeader,section];
-        [self registerClass:NSClassFromString(viewName) forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:viewName];
+    [self registerClass:NSClassFromString(viewName) forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:viewName];
     
     self.dict_identifierHeader[key] = viewName;
     
@@ -504,7 +504,7 @@
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
- NSString * key = [NSString stringWithFormat:@"%@-%ld",UICollectionElementKindSectionHeader,indexPath.section];
+    NSString * key = [NSString stringWithFormat:@"%@-%ld",UICollectionElementKindSectionHeader,indexPath.section];
     NSString * viewName = self.dict_identifierHeader[key];
     if (!viewName) {
         
@@ -535,13 +535,13 @@
 
 //返回头headerView的大小
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
-     NSString * key = [NSString stringWithFormat:@"%@-%ld",UICollectionElementKindSectionHeader,section];
+    NSString * key = [NSString stringWithFormat:@"%@-%ld",UICollectionElementKindSectionHeader,section];
     
     NSString * viewName = self.dict_identifierHeader[key];
     if (!CGSizeEqualToSize(_headSize, CGSizeZero)) {
         return _headSize;
     }
-
+    
     
     CGSize size = CGSizeZero;
     
@@ -573,9 +573,9 @@
     if (_viewForSupplementaryElementOfKindInSection) {
         _viewForSupplementaryElementOfKindInSection(_revTemp,UICollectionElementKindSectionHeader,section);
     }
-  
+    
     if ([_revTemp isKindOfClass:[CommonRView class]]) {
-    CommonRView * rev = (CommonRView *)_revTemp;
+        CommonRView * rev = (CommonRView *)_revTemp;
         [rev commonCollectionView:self inViewController:[self viewController] viewForSupplementaryElementOfKind:UICollectionElementKindSectionHeader inSection:section];
     }
     

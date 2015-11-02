@@ -26,7 +26,7 @@ typedef void(^DidTouchCollectionView)(UICollectionView * ctv);
 
 
 @property(nonatomic,strong)NSArray * arr_sectionHeaderHeight;
-@property(nonatomic,strong)NSMutableArray * arr_insetForSection;
+@property(nonatomic,strong)NSMutableDictionary * dict_insetForSection;
 //cell设置,identifier
 @property(nonatomic,strong)NSMutableArray * arr_identifierConfig;
 
@@ -47,7 +47,9 @@ typedef void(^DidTouchCollectionView)(UICollectionView * ctv);
 @property(nonatomic,copy)DidTouchCollectionView didTouchCollectionView;
 
 @property(nonatomic)BOOL closeAutoReload;
+
 -(void)setSection:(NSInteger)section withInset:(UIEdgeInsets)inset;
+
 //insetForSectionAtIndex
 -(void)addNibWithEntity:(id)str_Object andCellName:(NSString *)cellName;
 -(void)addClassWithEntity:(id)str_Object andCellName:(NSString *)cellName;
