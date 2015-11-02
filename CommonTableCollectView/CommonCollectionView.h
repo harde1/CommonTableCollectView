@@ -47,7 +47,7 @@ typedef void(^DidTouchCollectionView)(UICollectionView * ctv);
 @property(nonatomic,copy)DidTouchCollectionView didTouchCollectionView;
 
 @property(nonatomic)BOOL closeAutoReload;
-
+-(void)setSection:(NSInteger)section withInset:(UIEdgeInsets)inset;
 //insetForSectionAtIndex
 -(void)addNibWithEntity:(id)str_Object andCellName:(NSString *)cellName;
 -(void)addClassWithEntity:(id)str_Object andCellName:(NSString *)cellName;

@@ -590,5 +590,9 @@
     
     return size;
 }
+-(void)setSection:(NSInteger)section withInset:(UIEdgeInsets)inset {
+    NSString * insetKey = [NSString stringWithFormat:@"section-%ld",section];
+    self.dict_insetForSection[insetKey] = NSStringFromUIEdgeInsets(inset);
+}
 
 @end
