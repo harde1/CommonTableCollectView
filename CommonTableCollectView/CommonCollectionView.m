@@ -540,7 +540,7 @@
     NSString * viewName = self.dict_identifierHeader[key];
      CGSize size = CGSizeZero;
     if (!viewName) {
-        NSLog(@"%@->%@:返回空的头大小",key,viewName);
+
         return size;
     }
     if (!CGSizeEqualToSize(_headSize, CGSizeZero)) {
@@ -613,6 +613,42 @@
 }
 -(void)setMoveItemAtIndexPath:(MoveItemAtIndexPath)moveItemAtIndexPath{
     _moveItemAtIndexPath = moveItemAtIndexPath;
+}
+
+-(void)moveItemFromIndexPath:(NSIndexPath *)fromIndexPath toNewIndexPath:(nonnull NSIndexPath *)newIndexPath {
+    @try {
+        [self removeSize];
+        id temp = self.arr_dataSource[fromIndexPath.section][fromIndexPath.item];
+        id identifier = self.arr_identifierConfig[fromIndexPath.section][fromIndexPath.item];
+        
+        
+        [self.arr_identifierConfig[fromIndexPath.section] removeObjectAtIndex:fromIndexPath.row];
+        [self.arr_dataSource[fromIndexPath.section] removeObjectAtIndex:fromIndexPath.row];
+        
+        
+        [self.arr_dataSource[newIndexPath.section] insertObject:temp atIndex:newIndexPath.item];
+        
+        [self.arr_identifierConfig[newIndexPath.section] insertObject:identifier atIndex:newIndexPath.item];
+        
+        
+//        NSLog(@"%d,%d,%d,%d",[self.arr_dataSource[fromIndexPath.section] count],[self.arr_identifierConfig[fromIndexPath.section] count],[self.arr_dataSource[newIndexPath.section] count],[self.arr_identifierConfig[newIndexPath.section] count]);
+        
+//        [self performBatchUpdates:^{
+//            [self moveItemFromIndexPath:fromIndexPath toNewIndexPath:newIndexPath];
+//        } completion:^(BOOL finished) {
+//        }];
+         [self reloadData];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"%@",exception);
+    }
+    @finally {
+        
+    }
+    
+  
+    
+	
 }
 
 @end
