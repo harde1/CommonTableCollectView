@@ -409,9 +409,9 @@
 -(void)insertIndexPath:(NSIndexPath *)indexPath withNibWithEntity:(id)object andCellName:(NSString *)cellName{
     
     
-//    if (![self.arr_identifierConfig[indexPath.section] containsObject:cellName]) {
-        [self setCellNibName:cellName andCellReuseIdentifier:cellName];
-//    }
+    //    if (![self.arr_identifierConfig[indexPath.section] containsObject:cellName]) {
+    [self setCellNibName:cellName andCellReuseIdentifier:cellName];
+    //    }
     
     [self.arr_identifierConfig[indexPath.section] insertObject:cellName atIndex:indexPath.row];
     [self.arr_dataSource[indexPath.section] insertObject:object atIndex:indexPath.row];
@@ -538,9 +538,9 @@
     NSString * key = [NSString stringWithFormat:@"%@-%ld",UICollectionElementKindSectionHeader,section];
     
     NSString * viewName = self.dict_identifierHeader[key];
-     CGSize size = CGSizeZero;
+    CGSize size = CGSizeZero;
     if (!viewName) {
-
+        
         return size;
     }
     if (!CGSizeEqualToSize(_headSize, CGSizeZero)) {
@@ -548,23 +548,23 @@
     }
     
     
-   
     
-   
+    
+    
     
     NSString * key2 = [NSString stringWithFormat:@"UICollectionViewHead-%ld",(long)section];
     
     if (self.dict_headerSizeSave[key]) {
         size =CGSizeFromString(self.dict_headerSizeSave[key2]);
         
- NSLog(@"dict_headerSizeSave:%s w:%.4f, h:%.4f", size, size.width, size.height);
+        NSLog(@"dict_headerSizeSave:%s w:%.4f, h:%.4f", size, size.width, size.height);
         return size;
     }
     
     
-//    if (!_revTemp) {
-        _revTemp = [[[NSBundle mainBundle]loadNibNamed:viewName owner:self options:nil] firstObject];
-//    }
+    //    if (!_revTemp) {
+    _revTemp = [[[NSBundle mainBundle]loadNibNamed:viewName owner:self options:nil] firstObject];
+    //    }
     
     
     if ([_revTemp isKindOfClass:[CommonRView class]]) {
@@ -615,29 +615,27 @@
     _moveItemAtIndexPath = moveItemAtIndexPath;
 }
 
--(void)moveItemFromIndexPath:(NSIndexPath *)fromIndexPath toNewIndexPath:(nonnull NSIndexPath *)newIndexPath {
+-(void)moveItemFromIndexPath:(NSIndexPath *)fromIndexPath toNewIndexPath:(NSIndexPath *)newIndexPath andBlock:(void(^)(NSInteger state))stateBlock{
     @try {
+        
+        stateBlock(0);
+        
         [self removeSize];
         id temp = self.arr_dataSource[fromIndexPath.section][fromIndexPath.item];
         id identifier = self.arr_identifierConfig[fromIndexPath.section][fromIndexPath.item];
         
-        
         [self.arr_identifierConfig[fromIndexPath.section] removeObjectAtIndex:fromIndexPath.row];
         [self.arr_dataSource[fromIndexPath.section] removeObjectAtIndex:fromIndexPath.row];
-        
         
         [self.arr_dataSource[newIndexPath.section] insertObject:temp atIndex:newIndexPath.item];
         
         [self.arr_identifierConfig[newIndexPath.section] insertObject:identifier atIndex:newIndexPath.item];
         
+        [self moveItemAtIndexPath:fromIndexPath toIndexPath:newIndexPath];
         
-//        NSLog(@"%d,%d,%d,%d",[self.arr_dataSource[fromIndexPath.section] count],[self.arr_identifierConfig[fromIndexPath.section] count],[self.arr_dataSource[newIndexPath.section] count],[self.arr_identifierConfig[newIndexPath.section] count]);
+        [self reloadData];
+        stateBlock(1);
         
-//        [self performBatchUpdates:^{
-//            [self moveItemFromIndexPath:fromIndexPath toNewIndexPath:newIndexPath];
-//        } completion:^(BOOL finished) {
-//        }];
-         [self reloadData];
     }
     @catch (NSException *exception) {
         NSLog(@"%@",exception);
@@ -646,9 +644,9 @@
         
     }
     
-  
     
-	
+    
+    
 }
 
 @end

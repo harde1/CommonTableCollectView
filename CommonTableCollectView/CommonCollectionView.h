@@ -71,7 +71,7 @@ typedef void(^MoveItemAtIndexPath)(UICollectionView * ctv,NSIndexPath * sourceIn
 //插入一个item和移除一个item
 -(void)insertIndexPath:(NSIndexPath *)indexPath withNibWithEntity:(id)object andCellName:(NSString *)cellName;
 
--(void)moveItemFromIndexPath:(NSIndexPath *)fromIndexPath toNewIndexPath:(nonnull NSIndexPath *)newIndexPath;
+-(void)moveItemFromIndexPath:(NSIndexPath *)fromIndexPath toNewIndexPath:(NSIndexPath *)newIndexPath andBlock:(void(^)(NSInteger state))stateBlock;
 
 //进行判断类型是否准确再删除
 -(void)removeIndexPath:(NSIndexPath *)indexPath andCellName:(NSString *)cellName;
