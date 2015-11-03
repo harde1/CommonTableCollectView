@@ -13,6 +13,8 @@ typedef void(^CollectionViewCellAtIndexPath)(UICollectionViewCell * cell, NSInde
 typedef void(^ViewForSupplementaryElementOfKindInSection)(UICollectionReusableView * view, NSString * king,NSInteger section);
 typedef void(^DidSelectItemAtIndexPath)(NSIndexPath * indexPath);
 typedef void(^DidTouchCollectionView)(UICollectionView * ctv);
+typedef void(^MoveItemAtIndexPath)(UICollectionView * ctv,NSIndexPath * sourceIndexPath,NSIndexPath * destinationIndexPath);
+
 
 @interface CommonCollectionView : UICollectionView<UICollectionViewDataSource,UICollectionViewDelegate>
 
@@ -45,8 +47,12 @@ typedef void(^DidTouchCollectionView)(UICollectionView * ctv);
 @property(nonatomic,copy)DidSelectItemAtIndexPath didSelectItemAtIndexPath;
 //触摸到就触发了，例如可以用来回收键盘
 @property(nonatomic,copy)DidTouchCollectionView didTouchCollectionView;
+//移动的计算
+@property(nonatomic,copy)MoveItemAtIndexPath moveItemAtIndexPath;
 
 @property(nonatomic)BOOL closeAutoReload;
+
+-(void)setSection:(NSInteger)section withInset:(UIEdgeInsets)inset;
 
 //insetForSectionAtIndex
 -(void)addNibWithEntity:(id)str_Object andCellName:(NSString *)cellName;
@@ -54,9 +60,6 @@ typedef void(^DidTouchCollectionView)(UICollectionView * ctv);
 
 -(void)addNibWithEntity:(id)str_Object andCellName:(NSString *)cellName andSection:(int)section;
 -(void)addClassWithEntity:(id)str_Object andCellName:(NSString *)cellName andSection:(int)section;
-
-//设置每个section的inset
--(void)setSection:(NSInteger)section withInset:(UIEdgeInsets)inset;
 
 //清空所有数据
 -(void)clearAllData;
@@ -80,6 +83,8 @@ typedef void(^DidTouchCollectionView)(UICollectionView * ctv);
 -(void)addHeaderClassWithEntity:(id)str_Object andViewName:(NSString *)viewName andSection:(int)section;
 //头数据源头处理位置
 -(void)setViewForSupplementaryElementOfKindInSection:(ViewForSupplementaryElementOfKindInSection)viewForSupplementaryElementOfKindInSection;
+
+-(void)setMoveItemAtIndexPath:(MoveItemAtIndexPath)moveItemAtIndexPath;
 
 
 @end

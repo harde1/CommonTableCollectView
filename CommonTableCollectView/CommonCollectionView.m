@@ -409,9 +409,9 @@
 -(void)insertIndexPath:(NSIndexPath *)indexPath withNibWithEntity:(id)object andCellName:(NSString *)cellName{
     
     
-    //    if (![self.arr_identifierConfig[indexPath.section] containsObject:cellName]) {
-    [self setCellNibName:cellName andCellReuseIdentifier:cellName];
-    //    }
+//    if (![self.arr_identifierConfig[indexPath.section] containsObject:cellName]) {
+        [self setCellNibName:cellName andCellReuseIdentifier:cellName];
+//    }
     
     [self.arr_identifierConfig[indexPath.section] insertObject:cellName atIndex:indexPath.row];
     [self.arr_dataSource[indexPath.section] insertObject:object atIndex:indexPath.row];
@@ -538,29 +538,33 @@
     NSString * key = [NSString stringWithFormat:@"%@-%ld",UICollectionElementKindSectionHeader,section];
     
     NSString * viewName = self.dict_identifierHeader[key];
+     CGSize size = CGSizeZero;
+    if (!viewName) {
+        NSLog(@"%@->%@:返回空的头大小",key,viewName);
+        return size;
+    }
     if (!CGSizeEqualToSize(_headSize, CGSizeZero)) {
         return _headSize;
     }
     
     
-    CGSize size = CGSizeZero;
+   
     
-    if (!viewName) {
-        
-        return size;
-    }
+   
     
     NSString * key2 = [NSString stringWithFormat:@"UICollectionViewHead-%ld",(long)section];
     
     if (self.dict_headerSizeSave[key]) {
         size =CGSizeFromString(self.dict_headerSizeSave[key2]);
+        
+ NSLog(@"dict_headerSizeSave:%s w:%.4f, h:%.4f", size, size.width, size.height);
         return size;
     }
     
     
-    if (!_revTemp) {
+//    if (!_revTemp) {
         _revTemp = [[[NSBundle mainBundle]loadNibNamed:viewName owner:self options:nil] firstObject];
-    }
+//    }
     
     
     if ([_revTemp isKindOfClass:[CommonRView class]]) {
@@ -586,6 +590,9 @@
     
     size = [_revTemp systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     
+    
+    NSLog(@"%s w:%.4f, h:%.4f", size, size.width, size.height);
+    
     [self.dict_headerSizeSave setObject:NSStringFromCGSize(size) forKey:key];
     
     return size;
@@ -593,6 +600,19 @@
 -(void)setSection:(NSInteger)section withInset:(UIEdgeInsets)inset {
     NSString * insetKey = [NSString stringWithFormat:@"section-%ld",section];
     self.dict_insetForSection[insetKey] = NSStringFromUIEdgeInsets(inset);
+}
+
+-(void)collectionView:(UICollectionView *)collectionView moveItemAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath{
+    
+    
+    if (_moveItemAtIndexPath) {
+        _moveItemAtIndexPath(collectionView,sourceIndexPath,destinationIndexPath);
+    }
+    
+    
+}
+-(void)setMoveItemAtIndexPath:(MoveItemAtIndexPath)moveItemAtIndexPath{
+    _moveItemAtIndexPath = moveItemAtIndexPath;
 }
 
 @end

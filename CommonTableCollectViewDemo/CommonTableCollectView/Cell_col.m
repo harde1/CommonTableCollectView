@@ -19,4 +19,11 @@
     
 }
 
+-(void)commonCollectionView:(CommonCollectionView *)commonCollectionView inViewController:(UIViewController *)viewController didSelectCellAtIndexPath:(NSIndexPath *)indexPath{
+
+//    [commonCollectionView performBatchUpdates:^{
+//    [commonCollectionView moveItemAtIndexPath:self.myIndexPath toIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
+//    } completion:nil];
+    [commonCollectionView removeIndexPath:self.myIndexPath];
+}
 @end
