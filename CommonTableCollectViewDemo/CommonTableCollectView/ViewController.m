@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "CommonTableView.h"
 #import "Cell_test.h"
+#import "VHead.h"
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet CommonTableView *tv_test;
 
@@ -19,14 +20,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    NSString * str = @"sjhkjadhfkjdhsjkfhdsjkfhjkdshfjkladshlfjkhdsjkfhdjkashfjkdshfkdjshfdsjasjhkjadhfk";
-    for (int i=0; i<10; i++) {
-         [_tv_test addNibWithEntity:@{@"内容":str} andCellName:NSStringFromClass([Cell_test class])];
-        
-         str = [str stringByAppendingString:str];
-    }
+//    NSString * str = @"sjhkjadhfkjdhsjkfhdsjkfhjkdshfjkladshlfjkhdsjkfhdjkashfjkdshfkdjshfdsjasjhkjadhfk";
+//    for (int i=0; i<10; i++) {
+//         [_tv_test addNibWithEntity:@{@"内容":str} andCellName:NSStringFromClass([Cell_test class])];
+//        
+//         str = [str stringByAppendingString:str];
+//    }
     
-   
+    VHead *vHead = [[[NSBundle mainBundle]loadNibNamed:@"VHead" owner:self options:nil] lastObject];
+    _tv_test.tableHeaderView = vHead;
+    
+    
+     [_tv_test addNibWithEntity:@{@"1":@"dasdasda",@"2":@"sdHSADJK"} andCellName:@"CellTest"];
+     [_tv_test addNibWithEntity:@{@"1":@"fsdafdasfdasda",@"2":@"sdHSAadksakDJK"}  andCellName:@"CellTest"];
+     [_tv_test addNibWithEntity:@{@"1":@"3123123dasd213213asda",@"2":@"sdHSADJK"}  andCellName:@"CellTest"];
+     [_tv_test addNibWithEntity:@{@"1":@"dasd3213123213asda",@"2":@"sdHSdjshakfjkdhsfkjhdsjkfhljadkshfjdashjADJK"}  andCellName:@"CellTest"];
+    
     
 }
 

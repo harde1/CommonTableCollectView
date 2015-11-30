@@ -38,6 +38,7 @@ typedef void(^CellAtIndexPathSendData)(UITableViewCell * cell, NSIndexPath * ind
 
 @property(nonatomic,strong)NSMutableArray * arr_dataSource;
 @property(nonatomic,strong)NSMutableDictionary * dict_heightSave;
+
 @property(nonatomic,strong)NSArray * arr_section;
 @property(nonatomic,strong)NSMutableArray * arr_Config;//cell设置,identifier
 
@@ -75,6 +76,7 @@ typedef void(^CellAtIndexPathSendData)(UITableViewCell * cell, NSIndexPath * ind
 
 //插入一个cell
 -(void)insertIndexPath:(NSIndexPath *)indexPath withNibWithEntity:(id)object andCellName:(NSString *)cellName withRowAnimation:(UITableViewRowAnimation)animation;
+-(void)insertIndexPath:(NSIndexPath *)indexPath withClassWithEntity:(id)object andCellName:(NSString *)cellName withRowAnimation:(UITableViewRowAnimation)animation;
 //移除一个cell
 -(void)removeIndexPath:(NSIndexPath *)indexPath andCellName:(NSString *)cellName withRowAnimation:(UITableViewRowAnimation)animation;
 -(void)removeIndexPath:(NSIndexPath *)indexPath withRowAnimation:(UITableViewRowAnimation)animation;

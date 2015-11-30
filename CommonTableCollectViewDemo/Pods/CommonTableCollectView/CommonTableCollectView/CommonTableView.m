@@ -83,13 +83,16 @@
 }
 
 -(NSMutableDictionary *)dict_heightSave{
-    
     if (!_dict_heightSave) {
         _dict_heightSave = [@{}mutableCopy];
     }
-    
     return _dict_heightSave;
 }
+
+
+
+
+
 
 - (instancetype)init{
     self = [super init];
@@ -367,13 +370,14 @@
     
     
     [self.dict_heightSave removeAllObjects];
+    
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (self.arr_Config.count<=indexPath.section) {
         NSLog(@"waring:section设置错误了");
-        
     }
     
     if ([self.arr_Config[indexPath.section] count]<=indexPath.row) {
@@ -412,7 +416,7 @@
         [commonCell commonTableView:self inViewController:[self viewController] cellForIndexPath:indexPath];
         
     }else{
-//        NSLog(@"warning:没有继承CommonCell");
+        //        NSLog(@"warning:没有继承CommonCell");
     }
     
     
@@ -495,20 +499,24 @@
 
 -(void)removeHeightByIndexPath:(NSIndexPath *)indexPath{
     
-    NSString * key = [NSString stringWithFormat:@"qqqqqqqqqqqqqqqq-%ld,%ld",(long)indexPath.section,(long)indexPath.row];
+    NSString * key = [NSString stringWithFormat:@"%ld,%ld",(long)indexPath.section,(long)indexPath.row];
     
     [self.dict_heightSave removeObjectForKey:key];
+    
+    
     
     
 }
 -(void)removeHeight{
     
     [self.dict_heightSave removeAllObjects];
+    
 }
 
-
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSString * key = [NSString stringWithFormat:@"qqqqqqqqqqqqqqqq-%ld,%ld",(long)indexPath.section,(long)indexPath.row];
+    NSString * key = [NSString stringWithFormat:@"%ld,%ld",(long)indexPath.section,(long)indexPath.row];
+    
+    //通过indexPath来检查数组的结构
     
     if (self.dict_heightSave[key]) {
         return [self.dict_heightSave[key] floatValue];
@@ -545,8 +553,6 @@
     
     
     
-    
-    
     if (_cellAtIndexPath) {
         _cellAtIndexPath(cell,indexPath);
     }
@@ -558,6 +564,7 @@
     
     
     [self.dict_heightSave setObject:@(height) forKey:key];
+    
     
     return height;
 }
@@ -571,7 +578,7 @@
     if (_didSelectRowAtIndexPath) {
         _didSelectRowAtIndexPath(indexPath);
     }else{
-//        NSLog(@"warning:没有集成DidSelectRowAtIndexPath block");
+        //        NSLog(@"warning:没有集成DidSelectRowAtIndexPath block");
     }
     
     UITableViewCell * cell = [self cellForRowAtIndexPath:indexPath];
@@ -582,7 +589,7 @@
         [commonCell commonTableView:self inViewController:[self viewController] didSelectCellAtIndexPath:indexPath];
         
     }else{
-//        NSLog(@"warning:没有继承CommonCell");
+        //        NSLog(@"warning:没有继承CommonCell");
     }
 }
 
@@ -602,7 +609,7 @@
     
     str_ClassMeaning = [str_View componentsSeparatedByString:@"_"];
     if (str_ClassMeaning.count<2) {
-//        NSLog(@"warining:你的控件名字写错了");
+        //        NSLog(@"warining:你的控件名字写错了");
         //        if ([UtilCommon isSimulator]) {
         //            assert(nil);
         //        }
@@ -672,7 +679,7 @@
             }
             else{
                 
-//                NSLog(@"waring:数据实体里面不包含--%@ 属性",str_Meaning);
+                //                NSLog(@"waring:数据实体里面不包含--%@ 属性",str_Meaning);
                 
             }
             
@@ -694,7 +701,7 @@
         NSString * str_Meaning2;
         str_ClassMeaning = [str_View componentsSeparatedByString:@"_"];
         if (str_ClassMeaning.count<2) {
-//            NSLog(@"warining:你的控件名字写错了");
+            //            NSLog(@"warining:你的控件名字写错了");
             //            if ([UtilCommon isSimulator]) {
             //                assert(nil);
             //            }
@@ -724,7 +731,7 @@
             }
             else{
                 
-//                NSLog(@"waring:数据实体里面不包含--%@ 属性",str_Meaning);
+                //                NSLog(@"waring:数据实体里面不包含--%@ 属性",str_Meaning);
                 //                if ([UtilCommon isSimulator]) {
                 //                    //                    assert(nil);
                 //                }
@@ -1230,18 +1237,113 @@
         [self reloadData];
     }
 }
-
--(void)insertIndexPath:(NSIndexPath *)indexPath withNibWithEntity:(id)object andCellName:(NSString *)cellName withRowAnimation:(UITableViewRowAnimation)animation{
+-(int)getAscii:(NSString *)key{
     
+    //    NSString *str = key;
+    //    const char *ch = [str cStringUsingEncoding:NSASCIIStringEncoding];
+    int num = 0;
+    //    for (int i = 0; i < strlen(ch); i++) {
+    //        num = num + (int)ch[i];
+    //    }
+    
+    
+    NSArray * arr = [key componentsSeparatedByString:@","];
+    num = [[arr firstObject] integerValue] * 10 + [[arr lastObject] integerValue];
+    
+    return num;
+}
+-(void)insertIndexPath:(NSIndexPath *)indexPath withClassWithEntity:(id)object andCellName:(NSString *)cellName withRowAnimation:(UITableViewRowAnimation)animation{
+    
+    if (indexPath.row==0 && [self.arr_dataSource[indexPath.section] count]==0) {
+        [self addClassWithEntity:object andCellName:cellName];
+        return;
+    }
     
     if (![self.arr_Config[indexPath.section] containsObject:cellName]) {
-        [self setCellNibName:cellName andCellReuseIdentifier:cellName];
+        [self setCellClass:cellName andCellReuseIdentifier:cellName];
     }
     
     [self.arr_Config[indexPath.section] insertObject:cellName atIndex:indexPath.row];
     [self.arr_dataSource[indexPath.section] insertObject:object atIndex:indexPath.row];
     
     [self removeHeight];
+    
+    //indexPath.row  之后的所有缓存数据要加1
+    //    NSString * key = [NSString stringWithFormat:@"%ld,%ld",(long)indexPath.section,(long)indexPath.row];//当前插入cell的高度key
+    //     NSArray * arr1 = [key componentsSeparatedByString:@","];
+    //    int intchange = [self getAscii:key];//转成ascii
+    //
+    //    for (NSString *kk in [self.dict_heightSave allKeys]) {
+    //        int intmo = [self getAscii:kk];
+    //         NSArray * arr2 = [kk componentsSeparatedByString:@","];
+    //        if (intmo>=intchange && [[arr1 firstObject] integerValue]==[[arr2 firstObject] integerValue]) {
+    //
+    //
+    //            NSInteger row = [[arr2 lastObject] integerValue]+1;
+    //            NSString * newKey = [NSString stringWithFormat:@"%ld,%ld",(long)indexPath.section,(long)row];
+    //            self.dict_heightSave[newKey]=self.dict_heightSave[kk];
+    //
+    //        }
+    //    }
+    //
+    //
+    //
+    //    [self removeHeightByIndexPath:indexPath];
+    
+    
+    
+    [self beginUpdates];
+    [self insertRowsAtIndexPaths:@[indexPath] withRowAnimation:animation];
+    [self endUpdates];
+}
+-(void)insertIndexPath:(NSIndexPath *)indexPath withNibWithEntity:(id)object andCellName:(NSString *)cellName withRowAnimation:(UITableViewRowAnimation)animation{
+   
+    
+    
+    if (indexPath.row==0 && [self.arr_dataSource[indexPath.section] count]==0) {
+        
+        
+
+        [self addNibWithEntity:object andCellName:cellName];
+    
+        
+        return;
+    }
+    
+    
+    if (![self.arr_Config[indexPath.section] containsObject:cellName]) {
+
+            [self setCellNibName:cellName andCellReuseIdentifier:cellName];
+    }
+    
+    [self.arr_Config[indexPath.section] insertObject:cellName atIndex:indexPath.row];
+    [self.arr_dataSource[indexPath.section] insertObject:object atIndex:indexPath.row];
+    
+    [self removeHeight];
+    
+    //indexPath.row  之后的所有缓存数据要加1
+    //    NSString * key = [NSString stringWithFormat:@"%ld,%ld",(long)indexPath.section,(long)indexPath.row];//当前插入cell的高度key
+    //     NSArray * arr1 = [key componentsSeparatedByString:@","];
+    //    int intchange = [self getAscii:key];//转成ascii
+    //
+    //    for (NSString *kk in [self.dict_heightSave allKeys]) {
+    //        int intmo = [self getAscii:kk];
+    //         NSArray * arr2 = [kk componentsSeparatedByString:@","];
+    //        if (intmo>=intchange && [[arr1 firstObject] integerValue]==[[arr2 firstObject] integerValue]) {
+    //
+    //
+    //            NSInteger row = [[arr2 lastObject] integerValue]+1;
+    //            NSString * newKey = [NSString stringWithFormat:@"%ld,%ld",(long)indexPath.section,(long)row];
+    //            self.dict_heightSave[newKey]=self.dict_heightSave[kk];
+    //
+    //        }
+    //    }
+    //
+    //
+    //
+    //    [self removeHeightByIndexPath:indexPath];
+    
+    
     
     [self beginUpdates];
     [self insertRowsAtIndexPaths:@[indexPath] withRowAnimation:animation];
@@ -1257,6 +1359,7 @@
             [arr removeObjectAtIndex:indexPath.row];
             [self.arr_dataSource[indexPath.section] removeObjectAtIndex:indexPath.row];
             [self removeHeightByIndexPath:indexPath];
+            
             [self beginUpdates];
             [self deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:animation];
             [self endUpdates];
@@ -1283,7 +1386,35 @@
         [self.arr_dataSource[indexPath.section] removeObjectAtIndex:indexPath.row];
         
         
-        [self removeHeight];
+        //        [self removeHeight];
+        
+        //indexPath.row  之后的所有缓存数据要加1
+        NSString * key = [NSString stringWithFormat:@"%ld,%ld",(long)indexPath.section,(long)indexPath.row];
+        
+        int intchange = [self getAscii:key];
+        [self removeHeightByIndexPath:indexPath];
+        for (NSString *kk in [self.dict_heightSave allKeys]) {
+            int intmo = [self getAscii:kk];
+            
+            if (intmo<=intchange) {
+                NSString * value = kk;
+                NSArray * arr = [value componentsSeparatedByString:@"-"];
+                if (arr.count==2) {
+                    arr =[[arr lastObject] componentsSeparatedByString:@","];
+                    if (arr.count==2) {
+                        if ([[arr firstObject] integerValue]==indexPath.section) {
+                            NSInteger row = [[arr lastObject] integerValue] - 1;
+                            NSString * newKey = [NSString stringWithFormat:@"%ld,%ld",(long)indexPath.section,(long)row];
+                            self.dict_heightSave[newKey]=self.dict_heightSave[kk];
+                        }
+                    }
+                }
+            }
+        }
+        
+        
+        
+        
         [self beginUpdates];
         [self deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:animation];
         [self endUpdates];
