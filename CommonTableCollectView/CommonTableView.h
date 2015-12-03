@@ -8,78 +8,85 @@
 
 #import <UIKit/UIKit.h>
 #import "CommonCell.h"
-typedef NS_ENUM(NSInteger, UITextFieldViewState) {
-    UITextFieldViewShouldBeginEditing=0,
-    UITextFieldViewDidBeginEditing,
-    UITextFieldShouldEndEditing,
-    UITextFieldDidEndEditing,
-    UITextFieldViewShouldChangeCharactersInRange,
-    UITextFieldViewShouldClear,
-    UITextFieldViewShouldReturn,
-    
-    
-    UITextViewDidChange,
-    UITextViewDidChangeSelection
-};
 
+static NSString * CELLIDENTIFIER = @"CellIdentifier";
+static NSString * CELLDATASOURCE = @"CellDataSource";
+static NSString * CELLHEIGHT = @"CellHeight";
 
+static NSString * CELLCANEDIT = @"CellCanEdit";
+static NSString * CELLEDITINGSTYLE = @"CellEditingStyle";
 
 typedef void(^DidSelectSectionAtIndexPath)(NSIndexPath * indexPath);
 typedef void(^DidTouchTableView)(UITableView * tv);
 typedef void(^DidSelectRowAtIndexPath)(NSIndexPath * indexPath);
 typedef void(^CellAtIndexPath)(UITableViewCell * cell, NSIndexPath * indexPath);
-typedef void(^CellAtIndexPathSendData)(UITableViewCell * cell, NSIndexPath * indexPath,id object,UITextFieldViewState state,id data);
+typedef void(^CommitEditingAtIndexPath)(UITableViewCell * cell,UITableViewCellEditingStyle editingStyle, NSIndexPath * indexPath);
 
-@interface CommonTableView : UITableView<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,UITextViewDelegate,UIScrollViewDelegate>
+@interface CommonTableView : UITableView
+<
+UITableViewDelegate,
+UITableViewDataSource,
+UITextFieldDelegate,
+UITextViewDelegate,
+UIScrollViewDelegate
+>
 
 @property(nonatomic,copy)DidSelectRowAtIndexPath didSelectRowAtIndexPath;
-@property(nonatomic,copy)CellAtIndexPath cellAtIndexPath; //给cell附加方法
-@property(nonatomic,copy)DidTouchTableView didTouchTableView; //给cell附加方法
-
+@property(nonatomic,copy)CellAtIndexPath cellAtIndexPath;
+@property(nonatomic,copy)DidTouchTableView didTouchTableView;
+//数据源
 @property(nonatomic,strong)NSMutableArray * arr_dataSource;
-@property(nonatomic,strong)NSMutableDictionary * dict_heightSave;
-
+@property(nonatomic,strong)NSMutableArray * arrConfig;
+//section高度
 @property(nonatomic,strong)NSArray * arr_section;
-@property(nonatomic,strong)NSMutableArray * arr_Config;//cell设置,identifier
-
-
+//关闭自动刷新
 @property(nonatomic)BOOL closeAutoReload;
+//滚到最后,未实现
 @property(nonatomic)BOOL scrolltoBottom;
-
--(void)commonTableViewCellAtIndexPath:(CellAtIndexPath)cellAtIndexPath andDidSelectRowAtIndexPath:(DidSelectRowAtIndexPath)didSelectRowAtIndexPath;
-
+//初始化
 - (instancetype)initWithSection:(NSArray *)arr_section;
 - (instancetype)initWithFrame:(CGRect)frame Section:(NSArray *)arr_sections;
-
-//section head
+//点击事件和cellfor事件block
+-(void)commonTableViewCellAtIndexPath:(CellAtIndexPath)cellAtIndexPath andDidSelectRowAtIndexPath:(DidSelectRowAtIndexPath)didSelectRowAtIndexPath;
+//编辑模式事件处理A
+-(void)setCommitEditingAtIndexPath:(CommitEditingAtIndexPath)commitEditingAtIndexPath;
+//测试阶段的方法有风险
 -(void)addGroupClassWithData:(NSDictionary *)data andHeadName:(NSString *)headName;
 -(void)addGroupNibWithData:(NSDictionary *)data andHeadName:(NSString *)headName;
-
-
+//section=0, 插入一个cell
 -(void)addNibWithEntity:(id)str_Object andCellName:(NSString *)cellName;
 -(void)addClassWithEntity:(id)str_Object andCellName:(NSString *)cellName;
+//指定一个section, 插入一个cell，有顺序
 -(void)addNibWithEntity:(id)str_Object andCellName:(NSString *)cellName andSection:(int)section;
 -(void)addClassWithEntity:(id)str_Object andCellName:(NSString *)cellName andSection:(int)section;
+#pragma mark -- 编辑模式 --
+-(void)addNibWithEntity:(id)obj andCellName:(NSString *)cellName editStyle:(UITableViewCellEditingStyle)editStyle;
+-(void)addClassWithEntity:(id)obj andCellName:(NSString *)cellName editStyle:(UITableViewCellEditingStyle)editStyle;
+-(void)addNibWithEntity:(id)obj andCellName:(NSString *)cellName editStyle:(UITableViewCellEditingStyle)editStyle andSection:(int)section;
+-(void)addClassWithEntity:(id)obj andCellName:(NSString *)cellName editStyle:(UITableViewCellEditingStyle)editStyle andSection:(int)section;
 
--(void)clearAllData;//清空所有数据
-
--(void)interceptObjectEvent:(UIView *)view;
+//清空所有数据
+-(void)clearAllData;
 //移除indexPath的cell的高度缓存
 -(void)removeHeightByIndexPath:(NSIndexPath *)indexPath;
 //移除所有高度缓存
 -(void)removeHeight;
-
+//点击事件Block
 -(void)setDidSelectRowAtIndexPath:(DidSelectRowAtIndexPath)didSelectRowAtIndexPath;
+//cellfor事件
 -(void)setCellAtIndexPath:(CellAtIndexPath)cellAtIndexPath;
+//tableView给点击
 -(void)setDidTouchTableView:(DidTouchTableView)didTouchTableView;
 
-
-//插入一个cell
+#pragma mark -- 插入\删除一个cell --
 -(void)insertIndexPath:(NSIndexPath *)indexPath withNibWithEntity:(id)object andCellName:(NSString *)cellName withRowAnimation:(UITableViewRowAnimation)animation;
 -(void)insertIndexPath:(NSIndexPath *)indexPath withClassWithEntity:(id)object andCellName:(NSString *)cellName withRowAnimation:(UITableViewRowAnimation)animation;
+//编辑模式
+-(void)insertInEditStyle:(UITableViewCellEditingStyle)editStyle indexPath:(NSIndexPath *)indexPath withNibWithEntity:(id)object andCellName:(NSString *)cellName withRowAnimation:(UITableViewRowAnimation)animation;
+-(void)insertInEditStyle:(UITableViewCellEditingStyle)editStyle indexPath:(NSIndexPath *)indexPath withClassWithEntity:(id)object andCellName:(NSString *)cellName withRowAnimation:(UITableViewRowAnimation)animation;
+
 //移除一个cell
 -(void)removeIndexPath:(NSIndexPath *)indexPath andCellName:(NSString *)cellName withRowAnimation:(UITableViewRowAnimation)animation;
 -(void)removeIndexPath:(NSIndexPath *)indexPath withRowAnimation:(UITableViewRowAnimation)animation;
-
 
 @end

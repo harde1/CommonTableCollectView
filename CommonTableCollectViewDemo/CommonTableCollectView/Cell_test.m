@@ -31,14 +31,14 @@
 
 -(void)commonTableView:(CommonTableView *)tableView inViewController:(id)viewController cellForIndexPath:(NSIndexPath *)indexPath{
     
-    NSLog(@"cellForIndexPath事件！！！！！！！");
+//    NSLog(@"cellForIndexPath事件！！！！！！！");
 }
 
 
 -(void)commonTableView:(CommonTableView *)tableView inViewController:(id)viewController didSelectCellAtIndexPath:(NSIndexPath *)indexPath{
     
     
-    NSLog(@"didSelectCellAtIndexPath点击事件！！！！！！！");
+    NSLog(@"%d,didSelectCellAtIndexPath点击事件！！！！！！！",self.myIndexPath.row);
 }
 
 
