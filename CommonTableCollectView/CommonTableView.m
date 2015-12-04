@@ -289,9 +289,8 @@
 }
 
 -(void)clearAllData{
- 
-    [self.arrConfig removeAllObjects];
-    [self.arr_dataSource removeAllObjects];
+    self.arr_dataSource = @[@[].mutableCopy].mutableCopy;
+    self.arrConfig = @[@[].mutableCopy].mutableCopy;
 }
 
 //一问
