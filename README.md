@@ -2,15 +2,15 @@
 通用型tableViewCollectView
 
 
-#  Cocoapods 内测版
+#  Cocoapods 
 
- pod 'CommonTableCollectView', :git => 'https://github.com/harde1/CommonTableCollectView'
+ pod 'CommonTableCollectView', '~> 0.0.1'
 
 # 作者以及联系方式
 
 梁殿熊  liangdianxiong@163.com
 
-cong    harde1@163.com
+cong   harde1@163.com
 
 #  优点
 
@@ -131,3 +131,21 @@ WS(weakSelf);
 
         -(void)removeIndexPath:(NSIndexPath *)indexPath withRowAnimation:(UITableViewRowAnimation)animation;
 
+
+八、编辑模式
+        //UITableViewCellEditingStyle 有三种模式，删除模式，插入模式，普通模式（默认）
+        -(void)addNibWithEntity:(id)obj andCellName:(NSString *)cellName editStyle:(UITableViewCellEditingStyle)editStyle;
+
+        -(void)addClassWithEntity:(id)obj andCellName:(NSString *)cellName editStyle:(UITableViewCellEditingStyle)editStyle;
+        //指定编辑模式的section
+        -(void)addNibWithEntity:(id)obj andCellName:(NSString *)cellName editStyle:(UITableViewCellEditingStyle)editStyle andSection:(int)section;
+
+        -(void)addClassWithEntity:(id)obj andCellName:(NSString *)cellName editStyle:(UITableViewCellEditingStyle)editStyle andSection:(int)section;
+
+        //编辑模式事件响应
+        //编辑模式事件处理A，CommonTableView的block方法块里面可以实现编辑事件
+        -(void)setCommitEditingAtIndexPath:(CommitEditingAtIndexPath)commitEditingAtIndexPath;
+
+
+        //编辑模式事件响应B，cell继承CommonCell之后，以下方法里面会给调用
+        - (void)commonTableView:(CommonTableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath;
