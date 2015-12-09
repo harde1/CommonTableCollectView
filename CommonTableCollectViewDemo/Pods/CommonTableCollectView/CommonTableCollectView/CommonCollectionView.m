@@ -179,7 +179,7 @@
 //设置元素的的大小框
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
     //每个section一个
-    NSString * insetKey = [NSString stringWithFormat:@"section-%ld",section];
+    NSString * insetKey = [NSString stringWithFormat:@"section-%ld",(long)section];
     if (!self.dict_insetForSection[insetKey]) {
         return UIEdgeInsetsZero;
     }
@@ -344,7 +344,7 @@
 }
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
-    NSString * key = [NSString stringWithFormat:@"%@-%ld",UICollectionElementKindSectionHeader,indexPath.section];
+    NSString * key = [NSString stringWithFormat:@"%@-%ld",UICollectionElementKindSectionHeader,(long)indexPath.section];
     NSString * viewName = self.dict_identifierHeader[key];
     if (!viewName) {
         return nil;
@@ -366,7 +366,7 @@
 }
 //返回头headerView的大小
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
-    NSString * key = [NSString stringWithFormat:@"%@-%ld",UICollectionElementKindSectionHeader,section];
+    NSString * key = [NSString stringWithFormat:@"%@-%ld",UICollectionElementKindSectionHeader,(long)section];
     NSString * viewName = self.dict_identifierHeader[key];
     CGSize size = CGSizeZero;
     if (!viewName) {
@@ -404,7 +404,7 @@
     return size;
 }
 -(void)setSection:(NSInteger)section withInset:(UIEdgeInsets)inset {
-    NSString * insetKey = [NSString stringWithFormat:@"section-%ld",section];
+    NSString * insetKey = [NSString stringWithFormat:@"section-%ld",(long)section];
     self.dict_insetForSection[insetKey] = NSStringFromUIEdgeInsets(inset);
 }
 -(void)collectionView:(UICollectionView *)collectionView moveItemAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath{
