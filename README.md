@@ -14,7 +14,7 @@ cong   harde1@163.com
 
 # 最简单的使用方法
 
- [tableView/collectionView addNibWithEntity:_params(参数对象) andCellName:NSStringFromClass([Cell_Posted_Text(cell的类) class])];
+        [tableView/collectionView addNibWithEntity:_params(参数对象) andCellName:NSStringFromClass([Cell_Posted_Text(cell的类) class])];
 
 
 tablView继承于CommonTableView,不要写代理delegate,一句都不要。
