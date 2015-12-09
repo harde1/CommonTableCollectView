@@ -18,8 +18,11 @@ cong   harde1@163.com
 
 
 tablView继承于CommonTableView,不要写代理delegate,一句都不要。
+
 约束遵守一个口诀：
-最顶和最底与cell.contentView的想接触的控件分别只能有一个。
+
+最顶和最底与cell.contentView的相接触的控件分别只能有一个。
+
 简单来说就是不能有高度歧义
 
 
