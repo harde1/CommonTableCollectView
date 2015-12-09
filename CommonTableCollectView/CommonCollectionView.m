@@ -7,6 +7,12 @@
 //
 #import "CommonCollectionView.h"
 #import "CommonRView.h"
+
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wformat"
+
+
 @implementation CommonCollectionView
 #pragma mark 初始化
 - (instancetype)init{
@@ -436,3 +442,5 @@
     }
 }
 @end
+
+#pragma clang diagnostic pop
