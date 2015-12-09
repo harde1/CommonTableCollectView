@@ -39,7 +39,6 @@
         
         if (!_dict_insetForSection) {
             
-            UIEdgeInsets top = UIEdgeInsetsZero;
             self.dict_insetForSection = [@{} mutableCopy];
         }
     }
@@ -72,7 +71,6 @@
         
         if (!_dict_insetForSection) {
             
-            UIEdgeInsets top = UIEdgeInsetsZero;
             self.dict_insetForSection = [@{} mutableCopy];
         }
         
@@ -105,7 +103,6 @@
         
         if (!_dict_insetForSection) {
             
-            UIEdgeInsets top = UIEdgeInsetsZero;
             self.dict_insetForSection = [@{} mutableCopy];
         }
         
@@ -557,7 +554,6 @@
     if (self.dict_headerSizeSave[key]) {
         size =CGSizeFromString(self.dict_headerSizeSave[key2]);
         
-        NSLog(@"dict_headerSizeSave:%s w:%.4f, h:%.4f", size, size.width, size.height);
         return size;
     }
     
@@ -591,7 +587,6 @@
     size = [_revTemp systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     
     
-    NSLog(@"%s w:%.4f, h:%.4f", size, size.width, size.height);
     
     [self.dict_headerSizeSave setObject:NSStringFromCGSize(size) forKey:key];
     
