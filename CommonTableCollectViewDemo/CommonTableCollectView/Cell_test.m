@@ -38,7 +38,7 @@
 -(void)commonTableView:(CommonTableView *)tableView inViewController:(id)viewController didSelectCellAtIndexPath:(NSIndexPath *)indexPath{
     
     
-    NSLog(@"%d,didSelectCellAtIndexPath点击事件！！！！！！！",self.myIndexPath.row);
+    NSLog(@"%ld,didSelectCellAtIndexPath点击事件！！！！！！！",(long)self.myIndexPath.row);
 }
 
 

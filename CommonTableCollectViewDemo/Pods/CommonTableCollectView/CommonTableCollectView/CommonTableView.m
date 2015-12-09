@@ -355,17 +355,17 @@
   
     
     if ([cell respondsToSelector:NSSelectorFromString(@"myIndexPath")]) {
-        CommonCell * commonCell = cell;
+        CommonCell * commonCell = (CommonCell *)cell;
         commonCell.myIndexPath = indexPath;
     }
     
     if ([cell respondsToSelector:NSSelectorFromString(@"tableView")]) {
-        CommonCell * commonCell = cell;
-        commonCell.tableView = tableView;
+        CommonCell * commonCell = (CommonCell *)cell;
+        commonCell.tableView = self;
     }
    
     if ([cell respondsToSelector:NSSelectorFromString(@"params")]) {
-        CommonCell * commonCell = cell;
+        CommonCell * commonCell = (CommonCell *)cell;
         commonCell.params = dictData[CELLDATASOURCE];
     }
     
@@ -782,7 +782,7 @@
                     
                 }else{
                     
-                    NSString * str_url = object;
+//                    NSString * str_url = object;
                     //                    [iv setImageWithURL:[NSURL URLWithString:str_url]];
                 }
             }else if([object isKindOfClass:[UIImage class]]){
@@ -1191,7 +1191,7 @@
     }
     if ([cell isKindOfClass:[CommonCell class]]) {
         CommonCell * commonCell = (CommonCell *)cell;
-        [commonCell commonTableView:tableView commitEditingStyle:editingStyle forRowAtIndexPath:indexPath];
+        [commonCell commonTableView:self commitEditingStyle:editingStyle forRowAtIndexPath:indexPath];
     }
     
 }
