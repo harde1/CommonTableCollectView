@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "CommonTableCollectView"
-  s.version      = "0.0.1"
+  s.version      = "0.0.2"
   s.summary      = "General tableView, greatly reduce the programming workload"
 
   s.description  = "对tableView进行了封装，多少组多少行有多高是什么cell,全部浓缩在一句代码里面，其实只要告诉tableView，是什么数据，对应什么类型的cell，就够了"
