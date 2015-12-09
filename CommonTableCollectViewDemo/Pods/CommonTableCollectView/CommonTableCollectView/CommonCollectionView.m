@@ -38,7 +38,6 @@
         
         
         if (!_dict_insetForSection) {
-            
             self.dict_insetForSection = [@{} mutableCopy];
         }
     }
