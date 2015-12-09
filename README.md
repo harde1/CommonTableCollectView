@@ -12,6 +12,17 @@
 
 cong   harde1@163.com
 
+# 最简单的使用方法
+
+ [tableView/collectionView addNibWithEntity:_params(参数对象) andCellName:NSStringFromClass([Cell_Posted_Text(cell的类) class])];
+
+
+tablView继承于CommonTableView,不要写代理delegate,一句都不要。
+约束遵守一个口诀：
+最顶和最底与cell.contentView的想接触的控件分别只能有一个。
+简单来说就是不能有高度歧义
+
+
 #  优点
 
 优点是：
@@ -57,7 +68,7 @@ tableView/collectionView.closeAutoReload = YES;
 
 二、cellAtIndexPath和didSelectRowAtIndexPath相应代码放在那里？
 
-WS(weakSelf);
+
 
         [tableView commonTableViewCellAtIndexPath:^(UITableViewCell *cell, NSIndexPath *indexPath) {
 
@@ -75,24 +86,18 @@ WS(weakSelf);
 在cell的类里面，因为父类Commoncell/CommonCollectionCell有参数
 
 
+
         @interface CommonCell : UITableViewCell
+        @property(strong,nonatomic)id params;
+        @property(strong,nonatomic)NSIndexPath * myIndexPath;
+        @property(weak,nonatomic)CommonTableView * tableView;
 
 
-        @property(strong,nonatomic)id params;//数据源
+        -(void)commonTableView:(CommonTableView *)tableView inViewController:(UIViewController *)viewController didSelectCellAtIndexPath:(NSIndexPath *)indexPath;
 
-        @property(strong,nonatomic)NSIndexPath * myIndexPath;//所在的indexPath
-
-        @property(weak,nonatomic)CommonTableView * tableView;//所在的tableView
-
-        //cellForIndexPath事件
-
-        -(void)commonTableView:(CommonTableView *)tableView inViewController:(id)viewController cellForIndexPath:(NSIndexPath *)indexPath;
-
-        //didSelectCellAtIndexPath事件
-
-        -(void)commonTableView:(CommonTableView *)tableView inViewController:(id)viewController didSelectCellAtIndexPath:(NSIndexPath *)indexPath;
-
-
+        -(void)commonTableView:(CommonTableView *)tableView inViewController:(UIViewController *)viewController cellForIndexPath:(NSIndexPath *)indexPath;
+        //编辑模式B
+        - (void)commonTableView:(CommonTableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath;
         @end
 
 基本在cell里面可以拿到viewcontroller,tableView,params,indexPath所有的参数，所以为何不在这些方法里面实现？
@@ -134,6 +139,7 @@ WS(weakSelf);
 
 八、编辑模式
         //UITableViewCellEditingStyle 有三种模式，删除模式，插入模式，普通模式（默认）
+        
         -(void)addNibWithEntity:(id)obj andCellName:(NSString *)cellName editStyle:(UITableViewCellEditingStyle)editStyle;
 
         -(void)addClassWithEntity:(id)obj andCellName:(NSString *)cellName editStyle:(UITableViewCellEditingStyle)editStyle;
