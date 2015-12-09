@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/harde1/CommonTableCollectView.git", :tag => s.version.to_s }
   s.author             = { "剑仁不败" => "harde1@163.com","敏钦" => "799621181@qq.com" }
 
-  s.source_files  = "CommonTableCollectView/*.{h,m}"
+  s.source_files  = "CommonTableCollectView/*.{h,m,txt}"
   s.platform     = :ios, '7.1'
   s.requires_arc = true
 end
