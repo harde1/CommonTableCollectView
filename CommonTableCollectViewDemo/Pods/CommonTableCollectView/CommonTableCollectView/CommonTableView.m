@@ -40,12 +40,12 @@
         if (!_arrConfig) {
             _arrConfig = [@[[@[] mutableCopy]]mutableCopy];
         }
-   
+        
         if (!_arr_dataSource) {
             _arr_dataSource = [@[[@[] mutableCopy]]mutableCopy];
         }
-        self.estimatedRowHeight = 200;
-        self.rowHeight = UITableViewAutomaticDimension;
+        self.estimatedRowHeight = 44;
+        
     }
     return self;
 }
@@ -64,8 +64,8 @@
         if (!_arr_dataSource) {
             _arr_dataSource = [@[[@[] mutableCopy]]mutableCopy];
         }
-        self.estimatedRowHeight = 200;
-        self.rowHeight = UITableViewAutomaticDimension;
+        self.estimatedRowHeight = 44;
+        
     }
     
     return self;
@@ -86,8 +86,8 @@
             _arr_dataSource = [@[[@[] mutableCopy]]mutableCopy];
         }
         
-        self.estimatedRowHeight = 200;
-        self.rowHeight = UITableViewAutomaticDimension;
+        self.estimatedRowHeight = 44;
+        
     }
     return self;
 }
@@ -113,8 +113,8 @@
                 [_arr_dataSource addObject:[@[]mutableCopy]];
             }
         }
-        self.estimatedRowHeight = 200;
-        self.rowHeight = UITableViewAutomaticDimension;
+        self.estimatedRowHeight = 44;
+        
     }
     return self;
 }
@@ -160,8 +160,8 @@
                 [_arr_dataSource addObject:[@[]mutableCopy]];
             }
         }
-        self.estimatedRowHeight = 200;
-        self.rowHeight = UITableViewAutomaticDimension;
+        self.estimatedRowHeight = 44;
+        
     }
     return self;
 }
@@ -291,11 +291,11 @@
 -(void)clearAllData{
     self.arr_dataSource = @[@[].mutableCopy].mutableCopy;
     self.arrConfig = @[@[].mutableCopy].mutableCopy;
+    [self reloadData];
 }
 
 //一问
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    
     return self.arrConfig.count;
 }
 //二问
@@ -306,17 +306,22 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     //假如高度是已经计算出来就使用缓存高度
     NSNumber * numHeight = self.arrConfig[indexPath.section][indexPath.row][CELLHEIGHT];
+    NSInteger section = indexPath.section;
     
-    if (![numHeight isEqualToNumber:@-1] && ![numHeight isEqualToNumber:@0]) {
-        
+    if (![numHeight isEqualToNumber:@(-1)] && ![numHeight isEqualToNumber:@0]) {
+        if (section==3) {
+            NSLog(@"缓存高度%@",numHeight);
+        }
         return [numHeight floatValue];
     }
+    
+    
     
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:self.arrConfig[indexPath.section][indexPath.row][CELLIDENTIFIER]];
     if (!cell) {
         cell = [(UITableViewCell *) [NSClassFromString(self.arrConfig[indexPath.section][indexPath.row][CELLIDENTIFIER]) alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:self.arrConfig[indexPath.section][indexPath.row][CELLIDENTIFIER]];
     }
-  
+    
     if ([cell respondsToSelector:NSSelectorFromString(@"myIndexPath")]) {
         [cell setValue:indexPath forKey:@"myIndexPath"];
     }
@@ -338,10 +343,14 @@
     }
     
     //[self setAllViewInCell:cell andIndexPath:indexPath];
-
+    
     CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-  
+    
     self.arrConfig[indexPath.section][indexPath.row][CELLHEIGHT] = @(height);
+    
+    if (section==3) {
+        NSLog(@"计算高度%f",height);
+    }
     return height;
 }
 //一答
@@ -352,29 +361,29 @@
     if (!cell) {
         cell = [(UITableViewCell *) [NSClassFromString(dictData[CELLIDENTIFIER]) alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:self.arrConfig[indexPath.section][indexPath.row][CELLIDENTIFIER]];
     }
-  
+    
     
     if ([cell respondsToSelector:NSSelectorFromString(@"myIndexPath")]) {
-        CommonCell * commonCell = (CommonCell *)cell;
+        CommonCell * commonCell = cell;
         commonCell.myIndexPath = indexPath;
     }
     
     if ([cell respondsToSelector:NSSelectorFromString(@"tableView")]) {
-        CommonCell * commonCell = (CommonCell *)cell;
-        commonCell.tableView = self;
+        CommonCell * commonCell = cell;
+        commonCell.tableView = tableView;
     }
-   
+    
     if ([cell respondsToSelector:NSSelectorFromString(@"params")]) {
-        CommonCell * commonCell = (CommonCell *)cell;
+        CommonCell * commonCell = cell;
         commonCell.params = dictData[CELLDATASOURCE];
     }
     
     if ([cell isKindOfClass:[CommonCell class]]) {
         CommonCell * commonCell = (CommonCell *)cell;
         [commonCell commonTableView:self inViewController:[self viewController] cellForIndexPath:indexPath];
-    
+        
     }
-  
+    
     if (_cellAtIndexPath) {
         _cellAtIndexPath(cell,indexPath);
     }
@@ -389,6 +398,10 @@
     
     [self registerNib:[UINib nibWithNibName:str_CellName bundle:nil] forCellReuseIdentifier:str_Identifier];
 }
+//-(BOOL)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
+//
+//    return YES;
+//}
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     
@@ -442,10 +455,11 @@
 
 
 -(void)removeHeightByIndexPath:(NSIndexPath *)indexPath{
-    self.arrConfig[indexPath.section][indexPath.row][CELLHEIGHT] = @-1;
+    NSLog(@"%d,%d清除高度",indexPath.section,indexPath.row);
+    self.arrConfig[indexPath.section][indexPath.row][CELLHEIGHT] = @(-1);
 }
 -(void)removeHeight{
-
+    
     for (NSMutableArray * arr in self.arrConfig) {
         [arr enumerateObjectsUsingBlock:^(NSMutableDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             obj[CELLHEIGHT] = @-1;
@@ -782,7 +796,7 @@
                     
                 }else{
                     
-//                    NSString * str_url = object;
+                    NSString * str_url = object;
                     //                    [iv setImageWithURL:[NSURL URLWithString:str_url]];
                 }
             }else if([object isKindOfClass:[UIImage class]]){
@@ -991,10 +1005,10 @@
     [self setCellNibName:cellName andCellReuseIdentifier:cellName];
     
     [self insertCellAllowEdit:YES editStyle:editStyle indexPath:indexPath withEntity:object andCellName:cellName withRowAnimation:animation];
-
+    
 }
 -(void)insertInEditStyle:(UITableViewCellEditingStyle)editStyle indexPath:(NSIndexPath *)indexPath withClassWithEntity:(id)object andCellName:(NSString *)cellName withRowAnimation:(UITableViewRowAnimation)animation{
-
+    
     if (indexPath.row==0 && [self.arrConfig[indexPath.section] count]==0) {
         [self addClassWithEntity:object andCellName:cellName];
         return;
@@ -1022,8 +1036,8 @@
     @try {
         
         if ([self.arrConfig[indexPath.section][indexPath.row][CELLIDENTIFIER] isEqualToString:cellName]) {
-
-
+            
+            
             [self.arrConfig[indexPath.section] removeObjectAtIndex:indexPath.row];
             [self.arr_dataSource[indexPath.section] removeObjectAtIndex:indexPath.row];
             [self beginUpdates];
@@ -1044,8 +1058,8 @@
 -(void)removeIndexPath:(NSIndexPath *)indexPath withRowAnimation:(UITableViewRowAnimation)animation{
     
     @try {
-
-
+        
+        
         [self.arrConfig[indexPath.section] removeObjectAtIndex:indexPath.row];
         [self.arr_dataSource[indexPath.section] removeObjectAtIndex:indexPath.row];
         [self beginUpdates];
@@ -1064,12 +1078,12 @@
 
 
 -(void)addNibWithEntity:(id)object andCellName:(NSString *)cellName andSection:(int)section {
-
+    
     //1、判断是否要注册，数组判断
     if (![cellName isEqualToString:@"UITableViewCell"]) {
         [self setCellNibName:cellName andCellReuseIdentifier:cellName];
     }
-  
+    
     [self addCellWithEntity:object andCellName:cellName allowEdit:NO editStyle:UITableViewCellEditingStyleNone andSection:section];
 }
 
@@ -1089,7 +1103,7 @@
 
 
 -(void)addCellWithEntity:(id)object andCellName:(NSString *)cellName allowEdit:(BOOL)allowEdit editStyle:(UITableViewCellEditingStyle)editStyle andSection:(int)section {
-
+    
     //2、 调整结构
     while (self.arrConfig.count<=section) {
         [self.arrConfig addObject:@[].mutableCopy];
@@ -1178,7 +1192,7 @@
     return [self.arrConfig[indexPath.section][indexPath.row][CELLCANEDIT] boolValue];
 }
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
-
+    
     return [self.arrConfig[indexPath.section][indexPath.row][CELLEDITINGSTYLE] integerValue];
 }
 
@@ -1191,9 +1205,50 @@
     }
     if ([cell isKindOfClass:[CommonCell class]]) {
         CommonCell * commonCell = (CommonCell *)cell;
-        [commonCell commonTableView:self commitEditingStyle:editingStyle forRowAtIndexPath:indexPath];
+        [commonCell commonTableView:tableView commitEditingStyle:editingStyle forRowAtIndexPath:indexPath];
     }
     
 }
+
+#pragma mark -- UIScrollViewDelegate --
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"scrollViewScroll" object:@(scrollViewDidScroll)];
+}
+- (void)scrollViewDidZoom:(UIScrollView *)scrollView {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"scrollViewScroll" object:@(scrollViewDidZoom)];
+}
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"scrollViewScroll" object:@(scrollViewWillBeginDragging)];
+}
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset NS_AVAILABLE_IOS(5_0){
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"scrollViewScroll" object:@(scrollViewWillEndDragging)];
+}
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"scrollViewScroll" object:@(scrollViewDidEndDragging)];
+}
+
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"scrollViewScroll" object:@(scrollViewWillBeginDecelerating)];
+}
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"scrollViewScroll" object:@(scrollViewDidEndDecelerating)];
+}
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView{
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"scrollViewScroll" object:@(scrollViewDidEndScrollingAnimation)];
+}
+- (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(nullable UIView *)view{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"scrollViewScroll" object:@(scrollViewWillBeginZooming)];
+}
+- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(nullable UIView *)view atScale:(CGFloat)scale{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"scrollViewScroll" object:@(scrollViewDidEndZooming)];
+}
+- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"scrollViewScroll" object:@(scrollViewShouldScrollToTop)];
+}
+- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"scrollViewScroll" object:@(scrollViewDidScrollToTop)];
+}
+
 
 @end

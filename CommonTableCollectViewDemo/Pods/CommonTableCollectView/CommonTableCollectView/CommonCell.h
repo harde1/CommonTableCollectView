@@ -22,4 +22,5 @@
 //编辑模式B
 - (void)commonTableView:(CommonTableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath;
 
+
 @end
