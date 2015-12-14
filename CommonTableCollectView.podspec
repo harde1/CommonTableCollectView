@@ -3,8 +3,8 @@ Pod::Spec.new do |s|
   s.version      = "0.0.4"
   s.summary      = "General tableView, greatly reduce the programming workload"
 
-  s.description  = "ogram quickly,
-The tableView object is encapsulated，多少组多少行有多高是什么cell,全部浓缩在一句代码里面，其实只要告诉tableView，是什么数据，对应什么类型的cell，就够了"
+  s.description  = "Program quickly,
+The tableView object is encapsulated，How many groups of how many lines are what cell, all concentrated in a code inside, in fact, as long as you tell tableView, what data, what type of cell, it is enough"
 
   s.homepage     = "https://github.com/harde1/CommonTableCollectView"
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
