@@ -364,30 +364,37 @@
     
     
     if ([cell respondsToSelector:NSSelectorFromString(@"myIndexPath")]) {
-        CommonCell * commonCell = cell;
+        CommonCell * commonCell = (CommonCell *)cell;
         commonCell.myIndexPath = indexPath;
     }
     
     if ([cell respondsToSelector:NSSelectorFromString(@"tableView")]) {
-        CommonCell * commonCell = cell;
-        commonCell.tableView = tableView;
+        CommonCell * commonCell = (CommonCell *)cell;
+        commonCell.tableView = self;
     }
     
     if ([cell respondsToSelector:NSSelectorFromString(@"params")]) {
-        CommonCell * commonCell = cell;
+        CommonCell * commonCell = (CommonCell *)cell;
         commonCell.params = dictData[CELLDATASOURCE];
     }
     
     if ([cell isKindOfClass:[CommonCell class]]) {
         CommonCell * commonCell = (CommonCell *)cell;
         [commonCell commonTableView:self inViewController:[self viewController] cellForIndexPath:indexPath];
-        
     }
     
     if (_cellAtIndexPath) {
         _cellAtIndexPath(cell,indexPath);
     }
-    
+    //刚刚打开
+    if (self.contentOffset.y<20) {
+        if ([cell isKindOfClass:[CommonCell class]]) {
+            CommonCell * commonCell = (CommonCell *)cell;
+            [commonCell commonTableView:self scrollType:scrollViewDidEndDecelerating];
+        }else{
+            [[NSNotificationCenter defaultCenter] postNotificationName:COMMONTABLEVIEWSCROLL object:@{COMMONTABLEVIE:self,SCROLLTYPE:@(scrollViewDidEndDecelerating)}];
+        }
+    }
     return cell;
 }
 //注册cell ,第一步
@@ -455,7 +462,7 @@
 
 
 -(void)removeHeightByIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"%d,%d清除高度",indexPath.section,indexPath.row);
+    
     self.arrConfig[indexPath.section][indexPath.row][CELLHEIGHT] = @(-1);
 }
 -(void)removeHeight{
@@ -796,7 +803,7 @@
                     
                 }else{
                     
-                    NSString * str_url = object;
+                    //                    NSString * str_url = object;
                     //                    [iv setImageWithURL:[NSURL URLWithString:str_url]];
                 }
             }else if([object isKindOfClass:[UIImage class]]){
@@ -1205,49 +1212,50 @@
     }
     if ([cell isKindOfClass:[CommonCell class]]) {
         CommonCell * commonCell = (CommonCell *)cell;
-        [commonCell commonTableView:tableView commitEditingStyle:editingStyle forRowAtIndexPath:indexPath];
+        [commonCell commonTableView:self commitEditingStyle:editingStyle forRowAtIndexPath:indexPath];
     }
     
 }
 
 #pragma mark -- UIScrollViewDelegate --
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"scrollViewScroll" object:@(scrollViewDidScroll)];
+    [[NSNotificationCenter defaultCenter] postNotificationName:COMMONTABLEVIEWSCROLL object:@{COMMONTABLEVIE:self,SCROLLTYPE:@(scrollViewDidScroll)}];
 }
 - (void)scrollViewDidZoom:(UIScrollView *)scrollView {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"scrollViewScroll" object:@(scrollViewDidZoom)];
+    [[NSNotificationCenter defaultCenter] postNotificationName:COMMONTABLEVIEWSCROLL object:@{COMMONTABLEVIE:self,SCROLLTYPE:@(scrollViewDidZoom)}];
 }
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"scrollViewScroll" object:@(scrollViewWillBeginDragging)];
+    [[NSNotificationCenter defaultCenter] postNotificationName:COMMONTABLEVIEWSCROLL object:@{COMMONTABLEVIE:self,SCROLLTYPE:@(scrollViewWillBeginDragging)}];
 }
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset NS_AVAILABLE_IOS(5_0){
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"scrollViewScroll" object:@(scrollViewWillEndDragging)];
+    [[NSNotificationCenter defaultCenter] postNotificationName:COMMONTABLEVIEWSCROLL object:@{COMMONTABLEVIE:self,SCROLLTYPE:@(scrollViewWillEndDragging)}];
 }
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"scrollViewScroll" object:@(scrollViewDidEndDragging)];
+    [[NSNotificationCenter defaultCenter] postNotificationName:COMMONTABLEVIEWSCROLL object:@{COMMONTABLEVIE:self,SCROLLTYPE:@(scrollViewDidEndDragging)}];
 }
 
 - (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"scrollViewScroll" object:@(scrollViewWillBeginDecelerating)];
+    [[NSNotificationCenter defaultCenter] postNotificationName:COMMONTABLEVIEWSCROLL object:@{COMMONTABLEVIE:self,SCROLLTYPE:@(scrollViewWillBeginDecelerating)}];
 }
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"scrollViewScroll" object:@(scrollViewDidEndDecelerating)];
+    [[NSNotificationCenter defaultCenter] postNotificationName:COMMONTABLEVIEWSCROLL object:@{COMMONTABLEVIE:self,SCROLLTYPE:@(scrollViewDidEndDecelerating)}];
 }
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView{
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"scrollViewScroll" object:@(scrollViewDidEndScrollingAnimation)];
+    [[NSNotificationCenter defaultCenter] postNotificationName:COMMONTABLEVIEWSCROLL object:@{COMMONTABLEVIE:self,SCROLLTYPE:@(scrollViewDidEndScrollingAnimation)}];
 }
 - (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(nullable UIView *)view{
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"scrollViewScroll" object:@(scrollViewWillBeginZooming)];
+    [[NSNotificationCenter defaultCenter] postNotificationName:COMMONTABLEVIEWSCROLL object:@{COMMONTABLEVIE:self,SCROLLTYPE:@(scrollViewWillBeginZooming)}];
 }
 - (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(nullable UIView *)view atScale:(CGFloat)scale{
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"scrollViewScroll" object:@(scrollViewDidEndZooming)];
+    [[NSNotificationCenter defaultCenter] postNotificationName:COMMONTABLEVIEWSCROLL object:@{COMMONTABLEVIE:self,SCROLLTYPE:@(scrollViewDidEndZooming)}];
 }
 - (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView{
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"scrollViewScroll" object:@(scrollViewShouldScrollToTop)];
+    [[NSNotificationCenter defaultCenter] postNotificationName:COMMONTABLEVIEWSCROLL object:@{COMMONTABLEVIE:self,SCROLLTYPE:@(scrollViewShouldScrollToTop)}];
+    return YES;
 }
 - (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView{
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"scrollViewScroll" object:@(scrollViewDidScrollToTop)];
+    [[NSNotificationCenter defaultCenter] postNotificationName:COMMONTABLEVIEWSCROLL object:@{COMMONTABLEVIE:self,SCROLLTYPE:@(scrollViewDidScrollToTop)}];
 }
 
 
