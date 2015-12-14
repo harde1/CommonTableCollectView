@@ -41,7 +41,7 @@
 }
 - (void)commonTableScrolling:(NSNotification *)notif {
     ScrollType scrollType = [notif.object[SCROLLTYPE] integerValue];
-    UITableView * tv = self.tableView;
+    UITableView * tv = (UITableView *)self.tableView;
     if (![tv isEqual:notif.object[COMMONTABLEVIE]] && (scrollType==scrollViewWillBeginDecelerating || scrollType == scrollViewDidEndDecelerating || scrollType == scrollViewDidEndDragging) && self.isShow) {
         return;
     }
@@ -54,7 +54,7 @@
 
 -(BOOL)isShow{
     _isShow = NO;
-    UITableView * tv = self.tableView;
+    UITableView * tv = (UITableView *)self.tableView;
     if (tv) {
         if (CGRectGetMaxY(self.frame)<tv.contentOffset.y || CGRectGetMinY(self.frame)>tv.contentOffset.y+CGRectGetHeight(tv.frame)) {
             _isShow = NO;
