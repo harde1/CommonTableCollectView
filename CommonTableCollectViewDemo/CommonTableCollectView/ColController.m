@@ -13,33 +13,34 @@
 
 @interface ColController ()
 @property (weak, nonatomic) IBOutlet CommonCollectionView *cv_text;
-
+@property(strong,nonatomic)UILabel * lbTest;
 @end
 
 @implementation ColController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    CGSize size = {100,200};
-//    _cv_text.headSize = size;
+    //    CGSize size = {100,200};
+    //    _cv_text.headSize = size;
+
     
     [_cv_text addHeaderNibWithEntity:@{@"title":@"第1个头"} andViewName:@"Rev_col" andSection:0];
     for (int i=0; i<10; i++) {
         [_cv_text addNibWithEntity:@{} andCellName:@"Cell_col"];
     }
-     [_cv_text addHeaderNibWithEntity:@{@"title":@"第2个头"} andViewName:@"Rev_col" andSection:1];
+    [_cv_text addHeaderNibWithEntity:@{@"title":@"第2个头"} andViewName:@"Rev_col" andSection:1];
     
     for (int i=0; i<10; i++) {
         [_cv_text addNibWithEntity:@{} andCellName:@"Cell_col" andSection:1];
     }
     
-    [_cv_text setViewForSupplementaryElementOfKindInSection:^(UICollectionReusableView *view, NSString *king, NSInteger section) {
-        Rev_col * rev_col = (Rev_col *)view;
-        rev_col.lb_text.text = @"11111";
-    }];
+    //    [_cv_text setViewForSupplementaryElementOfKindInSection:^(UICollectionReusableView *view, NSString *king, NSInteger section) {
+    //        Rev_col * rev_col = (Rev_col *)view;
+    //        rev_col.lb_text.text = @"11111";
+    //    }];
     
-//    UILongPressGestureRecognizer * longG = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(handleLongGesture:)];
-//    [_cv_text addGestureRecognizer:longG];
+    //    UILongPressGestureRecognizer * longG = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(handleLongGesture:)];
+    //    [_cv_text addGestureRecognizer:longG];
     
 }
 
@@ -72,16 +73,16 @@
             v_select.backgroundColor = [UIColor redColor];
             [_cv_text addSubview:self.view_select];
             
-//            [UtilUIHelper setRoundView:v_select WithCornerRadius:75/5 andBoaderColor:MAIN_COLOR andBoaderWidth:1 andBoaderNeed:YES];
+            //            [UtilUIHelper setRoundView:v_select WithCornerRadius:75/5 andBoaderColor:MAIN_COLOR andBoaderWidth:1 andBoaderNeed:YES];
             
-//            UILabel * lb = [UILabel new];
-//            [vc.view_select addSubview:lb];
-//            lb.frame = cell.lb_Tag.frame;
-//            lb.text = cell.lb_Tag.text;
-//            lb.backgroundColor = cell.lb_Tag.backgroundColor;
-//            lb.textColor = cell.lb_Tag.textColor;
-//            lb.textAlignment = NSTextAlignmentCenter;
-
+            //            UILabel * lb = [UILabel new];
+            //            [vc.view_select addSubview:lb];
+            //            lb.frame = cell.lb_Tag.frame;
+            //            lb.text = cell.lb_Tag.text;
+            //            lb.backgroundColor = cell.lb_Tag.backgroundColor;
+            //            lb.textColor = cell.lb_Tag.textColor;
+            //            lb.textAlignment = NSTextAlignmentCenter;
+            
             [_cv_text removeIndexPath:selectedIndexPath andCellName:@"Cell_col"];
             
             break;
@@ -93,7 +94,7 @@
             }
             
             CGPoint p = [gesture locationInView:gesture.view];
-
+            
             self.view_select.center = p;
             
             NSIndexPath * moveToIndexPath = [_cv_text indexPathForItemAtPoint:p];
