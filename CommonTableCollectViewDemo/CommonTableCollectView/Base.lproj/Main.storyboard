@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Kko-p3-VjS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="cAp-bK-8OI">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
@@ -7,7 +7,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eop-e6-4Re" customClass="CommonTableView">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
@@ -29,6 +29,7 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="eop-e6-4Re" secondAttribute="bottom" id="ze5-Dm-SGb"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="HyF-Uh-nEy"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
@@ -37,12 +38,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1225" y="429"/>
+            <point key="canvasLocation" x="1012" y="-568"/>
         </scene>
         <!--Col Controller-->
         <scene sceneID="qbO-ud-2L4">
             <objects>
-                <viewController storyboardIdentifier="ColController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Kko-p3-VjS" customClass="ColController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ColController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Kko-p3-VjS" customClass="ColController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gi2-A5-BgZ"/>
                         <viewControllerLayoutGuide type="bottom" id="hNU-Im-G4F"/>
@@ -75,6 +76,7 @@
                             <constraint firstAttribute="trailing" secondItem="cAh-hf-8ps" secondAttribute="trailing" id="tOJ-Zb-gvq"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="cv_text" destination="cAh-hf-8ps" id="StH-yc-q4g"/>
@@ -82,26 +84,97 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l2h-Ax-wLc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1765" y="429"/>
+            <point key="canvasLocation" x="1361" y="-568"/>
+        </scene>
+        <!--Pic Controller-->
+        <scene sceneID="XiD-VV-AbV">
+            <objects>
+                <viewController storyboardIdentifier="PicController" automaticallyAdjustsScrollViewInsets="NO" id="yPo-Dr-gcS" customClass="PicController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4M6-ov-xzc"/>
+                        <viewControllerLayoutGuide type="bottom" id="QLB-tj-UbW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bmo-Xk-4sb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="K0g-ka-uiV" customClass="CommonTableView">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="QLB-tj-UbW" firstAttribute="top" secondItem="K0g-ka-uiV" secondAttribute="bottom" id="DdK-pz-YTE"/>
+                            <constraint firstItem="K0g-ka-uiV" firstAttribute="top" secondItem="4M6-ov-xzc" secondAttribute="bottom" id="H90-wx-xBO"/>
+                            <constraint firstItem="K0g-ka-uiV" firstAttribute="leading" secondItem="bmo-Xk-4sb" secondAttribute="leading" id="Wvv-80-tqh"/>
+                            <constraint firstAttribute="trailing" secondItem="K0g-ka-uiV" secondAttribute="trailing" id="wP9-cT-Llv"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="tvPic" destination="K0g-ka-uiV" id="XgM-91-4iX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HK1-jz-g0y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1694" y="-568"/>
+        </scene>
+        <!--通用型列表-->
+        <scene sceneID="j5M-AB-Q8b">
+            <objects>
+                <viewController storyboardIdentifier="GoController" title="通用型列表" automaticallyAdjustsScrollViewInsets="NO" id="CLA-BG-zzL" customClass="GoController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="q34-Pt-vhL"/>
+                        <viewControllerLayoutGuide type="bottom" id="Z9l-8v-4Tj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jnt-Jt-T4B">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OBX-8M-6pT" customClass="CommonTableView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="OBX-8M-6pT" secondAttribute="trailing" id="2wR-Ov-O6v"/>
+                            <constraint firstItem="OBX-8M-6pT" firstAttribute="leading" secondItem="jnt-Jt-T4B" secondAttribute="leading" id="410-a0-1hH"/>
+                            <constraint firstItem="OBX-8M-6pT" firstAttribute="top" secondItem="q34-Pt-vhL" secondAttribute="bottom" id="U62-aK-x0V"/>
+                            <constraint firstItem="Z9l-8v-4Tj" firstAttribute="top" secondItem="OBX-8M-6pT" secondAttribute="bottom" id="uQ7-Qe-0th"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" id="aOS-H2-bU8"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="tvGo" destination="OBX-8M-6pT" id="sxK-6F-spQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cqb-65-Enq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="672" y="-568"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="9Tp-nq-Fac">
+        <scene sceneID="ZYd-9G-kNO">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="h4x-ld-E41" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cAp-bK-8OI" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="MHh-Tc-rED">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7WV-54-KoM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="zCF-UA-1NO"/>
+                        <segue destination="CLA-BG-zzL" kind="relationship" relationship="rootViewController" id="qYL-Cn-P00"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7Jx-NP-xvY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NXa-EF-b4V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="401" y="-247"/>
+            <point key="canvasLocation" x="273" y="-568"/>
         </scene>
     </scenes>
 </document>

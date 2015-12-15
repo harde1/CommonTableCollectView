@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '63F9781D834DEBF06E642C93'
+               BlueprintIdentifier = '87842330D568A98251634F98'
                BlueprintName = 'Pods-CommonTableCollectView'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libPods-CommonTableCollectView.a'>

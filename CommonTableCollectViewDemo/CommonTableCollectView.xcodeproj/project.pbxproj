@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F0B2D301C1FA609002B2CD8 /* GoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0B2D2F1C1FA609002B2CD8 /* GoController.m */; };
+		1F0B2D331C1FA744002B2CD8 /* CellGo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0B2D321C1FA744002B2CD8 /* CellGo.m */; };
+		1F0B2D381C1FB6A9002B2CD8 /* Cell_Essence_1.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0B2D361C1FB6A9002B2CD8 /* Cell_Essence_1.m */; };
+		1F0B2D391C1FB6A9002B2CD8 /* Cell_Essence_1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F0B2D371C1FB6A9002B2CD8 /* Cell_Essence_1.xib */; };
+		1F0B2D3C1C1FB78A002B2CD8 /* PicController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0B2D3B1C1FB78A002B2CD8 /* PicController.m */; };
 		1F0D53921C059751007F714A /* CellTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0D53901C059751007F714A /* CellTextView.m */; };
 		1F0D53931C059751007F714A /* CellTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F0D53911C059751007F714A /* CellTextView.xib */; };
 		1F1C72D01BE667E8009DC58B /* Rev_col.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1C72CE1BE667E8009DC58B /* Rev_col.m */; };
@@ -49,6 +54,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F0B2D2E1C1FA609002B2CD8 /* GoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoController.h; sourceTree = "<group>"; };
+		1F0B2D2F1C1FA609002B2CD8 /* GoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoController.m; sourceTree = "<group>"; };
+		1F0B2D311C1FA744002B2CD8 /* CellGo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellGo.h; sourceTree = "<group>"; };
+		1F0B2D321C1FA744002B2CD8 /* CellGo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellGo.m; sourceTree = "<group>"; };
+		1F0B2D351C1FB6A9002B2CD8 /* Cell_Essence_1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell_Essence_1.h; sourceTree = "<group>"; };
+		1F0B2D361C1FB6A9002B2CD8 /* Cell_Essence_1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell_Essence_1.m; sourceTree = "<group>"; };
+		1F0B2D371C1FB6A9002B2CD8 /* Cell_Essence_1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Cell_Essence_1.xib; sourceTree = "<group>"; };
+		1F0B2D3A1C1FB78A002B2CD8 /* PicController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicController.h; sourceTree = "<group>"; };
+		1F0B2D3B1C1FB78A002B2CD8 /* PicController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicController.m; sourceTree = "<group>"; };
 		1F0D538F1C059751007F714A /* CellTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellTextView.h; sourceTree = "<group>"; };
 		1F0D53901C059751007F714A /* CellTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellTextView.m; sourceTree = "<group>"; };
 		1F0D53911C059751007F714A /* CellTextView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CellTextView.xib; sourceTree = "<group>"; };
@@ -116,6 +130,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F0B2D341C1FB55C002B2CD8 /* CellHead */ = {
+			isa = PBXGroup;
+			children = (
+				1F0B2D351C1FB6A9002B2CD8 /* Cell_Essence_1.h */,
+				1F0B2D361C1FB6A9002B2CD8 /* Cell_Essence_1.m */,
+				1F0B2D371C1FB6A9002B2CD8 /* Cell_Essence_1.xib */,
+				1F0B2D311C1FA744002B2CD8 /* CellGo.h */,
+				1F0B2D321C1FA744002B2CD8 /* CellGo.m */,
+				1FFF5ACE1C040F0C00C5903F /* VHead.h */,
+				1FFF5ACF1C040F0C00C5903F /* VHead.m */,
+				1FFF5ACC1C040EDD00C5903F /* VHead.xib */,
+				1F0D538F1C059751007F714A /* CellTextView.h */,
+				1F0D53901C059751007F714A /* CellTextView.m */,
+				1F0D53911C059751007F714A /* CellTextView.xib */,
+				1FFF5AC71C040E4E00C5903F /* CellTest.h */,
+				1FFF5AC81C040E4E00C5903F /* CellTest.m */,
+				1FFF5AC91C040E4E00C5903F /* CellTest.xib */,
+				1F1C72CD1BE667E7009DC58B /* Rev_col.h */,
+				1F1C72CE1BE667E8009DC58B /* Rev_col.m */,
+				1F1C72CF1BE667E8009DC58B /* Rev_col.xib */,
+				1F57D4571BE4A46900BE88A7 /* Cell_col.h */,
+				1F57D4581BE4A46900BE88A7 /* Cell_col.m */,
+				1F57D4591BE4A46900BE88A7 /* Cell_col.xib */,
+				F47E589D1BC7D21C00D1633A /* Cell_test.h */,
+				F47E589E1BC7D21C00D1633A /* Cell_test.m */,
+				F47E589F1BC7D21C00D1633A /* Cell_test.xib */,
+			);
+			name = CellHead;
+			sourceTree = "<group>";
+		};
 		6FAEDE1FAADAC1ADA8795ABD /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,24 +208,11 @@
 				F47E58711BC7B5C300D1633A /* ViewController.m */,
 				1F57D45C1BE4A54300BE88A7 /* ColController.h */,
 				1F57D45D1BE4A54300BE88A7 /* ColController.m */,
-				1FFF5ACE1C040F0C00C5903F /* VHead.h */,
-				1FFF5ACF1C040F0C00C5903F /* VHead.m */,
-				1FFF5ACC1C040EDD00C5903F /* VHead.xib */,
-				1F0D538F1C059751007F714A /* CellTextView.h */,
-				1F0D53901C059751007F714A /* CellTextView.m */,
-				1F0D53911C059751007F714A /* CellTextView.xib */,
-				1FFF5AC71C040E4E00C5903F /* CellTest.h */,
-				1FFF5AC81C040E4E00C5903F /* CellTest.m */,
-				1FFF5AC91C040E4E00C5903F /* CellTest.xib */,
-				1F1C72CD1BE667E7009DC58B /* Rev_col.h */,
-				1F1C72CE1BE667E8009DC58B /* Rev_col.m */,
-				1F1C72CF1BE667E8009DC58B /* Rev_col.xib */,
-				1F57D4571BE4A46900BE88A7 /* Cell_col.h */,
-				1F57D4581BE4A46900BE88A7 /* Cell_col.m */,
-				1F57D4591BE4A46900BE88A7 /* Cell_col.xib */,
-				F47E589D1BC7D21C00D1633A /* Cell_test.h */,
-				F47E589E1BC7D21C00D1633A /* Cell_test.m */,
-				F47E589F1BC7D21C00D1633A /* Cell_test.xib */,
+				1F0B2D2E1C1FA609002B2CD8 /* GoController.h */,
+				1F0B2D2F1C1FA609002B2CD8 /* GoController.m */,
+				1F0B2D3A1C1FB78A002B2CD8 /* PicController.h */,
+				1F0B2D3B1C1FB78A002B2CD8 /* PicController.m */,
+				1F0B2D341C1FB55C002B2CD8 /* CellHead */,
 				F47E58731BC7B5C300D1633A /* Main.storyboard */,
 				F47E58761BC7B5C300D1633A /* Assets.xcassets */,
 				F47E58781BC7B5C300D1633A /* LaunchScreen.storyboard */,
@@ -323,6 +354,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F0B2D391C1FB6A9002B2CD8 /* Cell_Essence_1.xib in Resources */,
 				F47E587A1BC7B5C300D1633A /* LaunchScreen.storyboard in Resources */,
 				F47E58A11BC7D21C00D1633A /* Cell_test.xib in Resources */,
 				1FFF5ACD1C040EDD00C5903F /* VHead.xib in Resources */,
@@ -405,14 +437,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				F47E58721BC7B5C300D1633A /* ViewController.m in Sources */,
+				1F0B2D331C1FA744002B2CD8 /* CellGo.m in Sources */,
 				1F1C72D01BE667E8009DC58B /* Rev_col.m in Sources */,
 				F47E58A01BC7D21C00D1633A /* Cell_test.m in Sources */,
 				1FFF5AD01C040F0C00C5903F /* VHead.m in Sources */,
+				1F0B2D381C1FB6A9002B2CD8 /* Cell_Essence_1.m in Sources */,
 				1F57D45E1BE4A54300BE88A7 /* ColController.m in Sources */,
 				1F57D45A1BE4A46900BE88A7 /* Cell_col.m in Sources */,
 				1FFF5ACA1C040E4E00C5903F /* CellTest.m in Sources */,
+				1F0B2D301C1FA609002B2CD8 /* GoController.m in Sources */,
 				F47E586F1BC7B5C300D1633A /* AppDelegate.m in Sources */,
 				F47E586C1BC7B5C300D1633A /* main.m in Sources */,
+				1F0B2D3C1C1FB78A002B2CD8 /* PicController.m in Sources */,
 				1F0D53921C059751007F714A /* CellTextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

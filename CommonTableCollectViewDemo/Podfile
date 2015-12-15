@@ -2,16 +2,16 @@
 # platform :ios, '6.0'
 
 target 'CommonTableCollectView' do
-pod 'CommonTableCollectView', :git => 'https://github.com/harde1/CommonTableCollectView'
-
-pod 'Masonry', '~> 0.6.3'
+    pod 'CommonTableCollectView', '~> 0.0.4'
+    pod 'AFNetworking', '~> 3.0.1'
+    pod 'Masonry', '~> 0.6.3'
 end
 
 target 'CommonTableCollectViewTests' do
-
+    
 end
 
 target 'CommonTableCollectViewUITests' do
-
+    
 end
 
