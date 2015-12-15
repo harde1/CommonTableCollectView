@@ -3,7 +3,7 @@
 
 #  Cocoapods 
 
- pod 'CommonTableCollectView', '~> 0.0.1'
+ pod 'CommonTableCollectView', '~> 0.0.4'
 
 # 作者以及联系方式
 
