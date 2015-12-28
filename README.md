@@ -30,6 +30,14 @@ tablView继承于CommonTableView,不要写代理delegate,一句都不要。
 简单来说就是不能有高度歧义
 
 
+#   使用方式 －－ 一句代码就是整个tableView
+
+
+        [tableView/collectionView addNibWithEntity:_params(参数对象) andCellName:NSStringFromClass([Cell_Posted_Text(cell的类) class])];
+
+
+
+
 #  优点
 
 优点是：
