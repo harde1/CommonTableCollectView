@@ -3,6 +3,7 @@
 
 #  Cocoapods 
 
+
 pod 'CommonTableCollectView', '~> 0.0.4'
 
 #  预览图
@@ -10,6 +11,9 @@ pod 'CommonTableCollectView', '~> 0.0.4'
 <img src="https://raw.github.com/AFNetworking/AFNetworking/assets/afnetworking-logo.png" alt="AFNetworking" title="AFNetworking">
 </p>
 
+
+
+pod 'CommonTableCollectView', '~> 0.0.4'
 
 
 # 作者以及联系方式
@@ -35,6 +39,14 @@ tablView继承于CommonTableView,不要写代理delegate,一句都不要。
 最顶和最底与cell.contentView的相接触的控件分别只能有一个。
 
 简单来说就是不能有高度歧义
+
+
+#   使用方式 －－ 一句代码就是整个tableView
+
+
+[tableView/collectionView addNibWithEntity:_params(参数对象) andCellName:NSStringFromClass([Cell_Posted_Text(cell的类) class])];
+
+
 
 
 #  优点
