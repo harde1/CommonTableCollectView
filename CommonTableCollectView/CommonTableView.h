@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "CommonCell.h"
+@class CommonTableView;
+@protocol CommonTableDelegate
+- (UIView *)commonTableView:(CommonTableView *)commonTableView viewForHeaderInSection:(NSInteger)section;
+
+-(CGFloat)commonTableView:(CommonTableView *)commonTableView heightForHeaderInSection:(NSInteger)section;
+
+@end
+
+
 //数据源
 static NSString * CELLIDENTIFIER = @"CellIdentifier";
 static NSString * CELLDATASOURCE = @"CellDataSource";
@@ -44,6 +53,8 @@ UIScrollViewDelegate
 @property(nonatomic)BOOL closeAutoReload;
 //滚到最后,未实现
 @property(nonatomic)BOOL scrolltoBottom;
+//用于tableView的头
+@property(assign,nonatomic)id<CommonTableDelegate> commonTableDelegate;
 //初始化
 - (instancetype)initWithSection:(NSArray *)arr_section;
 - (instancetype)initWithFrame:(CGRect)frame Section:(NSArray *)arr_sections;

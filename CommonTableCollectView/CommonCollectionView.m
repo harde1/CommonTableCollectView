@@ -162,14 +162,14 @@
 //设置元素内容
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell * cell =[collectionView dequeueReusableCellWithReuseIdentifier:self.arr_identifierConfig[indexPath.section][indexPath.row] forIndexPath:indexPath];
+    UICollectionViewCell * cell =[collectionView dequeueReusableCellWithReuseIdentifier:self.arr_identifierConfig[indexPath.section][indexPath.item] forIndexPath:indexPath];
     SEL myIndexPathGetMothon = NSSelectorFromString(@"myIndexPath");
     if ([cell respondsToSelector:myIndexPathGetMothon]) {
         [cell setValue:indexPath forKey:@"myIndexPath"];
     }
     SEL getMothon = NSSelectorFromString(@"params");
     if ([cell respondsToSelector:getMothon]) {
-        [cell setValue:self.arr_dataSource[indexPath.section][indexPath.row] forKey:@"params"];
+        [cell setValue:self.arr_dataSource[indexPath.section][indexPath.item] forKey:@"params"];
     }
     if (_collectionViewCellAtIndexPath) {
         _collectionViewCellAtIndexPath(cell,indexPath);
@@ -193,6 +193,8 @@
     UIEdgeInsets top = UIEdgeInsetsFromString(self.dict_insetForSection[insetKey]);
     return top;
 }
+
+
 //设置单元格宽度
 //设置元素大小
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -200,33 +202,45 @@
         return _itemSize;
     }
     CGSize size = CGSizeZero;
-    NSString * key = [NSString stringWithFormat:@"UICollectionView-%ld,%ld",(long)indexPath.section,(long)indexPath.row];
+    NSString * key = [NSString stringWithFormat:@"UICollectionView-%ld,%ld",(long)indexPath.section,(long)indexPath.item];
+    
+    
     if (self.dict_heightSave[key]) {
         size =CGSizeFromString(self.dict_heightSave[key]);
         return size;
     }
     UICollectionViewCell * cell;
     if (!_cell_temp) {
-        _cell_temp =[[[NSBundle mainBundle]loadNibNamed:self.arr_identifierConfig[indexPath.section][indexPath.row]  owner:self options:nil] lastObject];
+        _cell_temp =[[[NSBundle mainBundle]loadNibNamed:self.arr_identifierConfig[indexPath.section][indexPath.item]  owner:self options:nil] lastObject];
+    }else{
+        
+        NSString * cellName = NSStringFromClass([_cell_temp class]);
+        NSString * identifier = self.arr_identifierConfig[indexPath.section][indexPath.item];
+        if (![cellName isEqualToString:identifier]) {
+            _cell_temp =[[[NSBundle mainBundle]loadNibNamed:self.arr_identifierConfig[indexPath.section][indexPath.item]  owner:self options:nil] lastObject];
+        }
     }
+    
     cell = self.cell_temp;
+    
+    
+    
     SEL myIndexPathGetMothon = NSSelectorFromString(@"myIndexPath");
     if ([cell respondsToSelector:myIndexPathGetMothon]) {
         [cell setValue:indexPath forKey:@"myIndexPath"];
     }
     SEL getMothon = NSSelectorFromString(@"params");
     if ([cell respondsToSelector:getMothon]) {
-        [cell setValue:self.arr_dataSource[indexPath.section][indexPath.row] forKey:@"params"];
+        [cell setValue:self.arr_dataSource[indexPath.section][indexPath.item] forKey:@"params"];
     }
     if (_collectionViewCellAtIndexPath) {
         _collectionViewCellAtIndexPath(cell,indexPath);
     }
-    [cell.contentView layoutIfNeeded];
-    [cell.contentView updateConstraints];
-    [cell.contentView setNeedsUpdateConstraints];
-    [cell.contentView updateConstraintsIfNeeded];
+    
     size = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     [self.dict_heightSave setObject:NSStringFromCGSize(size) forKey:key];
+    
+    
     return size;
 }
 //互动
@@ -277,7 +291,7 @@
     [self.dict_heightSave removeAllObjects];
 }
 -(void)removeSizeByIndexPath:(NSIndexPath *)indexPath{
-    NSString * key = [NSString stringWithFormat:@"UICollectionView-%ld,%ld",(long)indexPath.section,(long)indexPath.row];
+    NSString * key = [NSString stringWithFormat:@"UICollectionView-%ld,%ld",(long)indexPath.section,(long)indexPath.item];
     [self.dict_heightSave removeObjectForKey:key];
 }
 -(void)removeSize{
@@ -287,17 +301,17 @@
     //    if (![self.arr_identifierConfig[indexPath.section] containsObject:cellName]) {
     [self setCellNibName:cellName andCellReuseIdentifier:cellName];
     //    }
-    [self.arr_identifierConfig[indexPath.section] insertObject:cellName atIndex:indexPath.row];
-    [self.arr_dataSource[indexPath.section] insertObject:object atIndex:indexPath.row];
+    [self.arr_identifierConfig[indexPath.section] insertObject:cellName atIndex:indexPath.item];
+    [self.arr_dataSource[indexPath.section] insertObject:object atIndex:indexPath.item];
     [self removeSize];
     [self insertItemsAtIndexPaths:@[indexPath]];
 }
 -(void)removeIndexPath:(NSIndexPath *)indexPath andCellName:(NSString *)cellName{
     @try {
         NSMutableArray * arr = self.arr_identifierConfig[indexPath.section];
-        if ([arr[indexPath.row] isEqualToString:cellName]) {
-            [arr removeObjectAtIndex:indexPath.row];
-            [self.arr_dataSource[indexPath.section] removeObjectAtIndex:indexPath.row];
+        if ([arr[indexPath.item] isEqualToString:cellName]) {
+            [arr removeObjectAtIndex:indexPath.item];
+            [self.arr_dataSource[indexPath.section] removeObjectAtIndex:indexPath.item];
             [self removeSizeByIndexPath:indexPath];
             [self deleteItemsAtIndexPaths:@[indexPath]];
         }
@@ -311,8 +325,8 @@
 -(void)removeIndexPath:(NSIndexPath *)indexPath{
     @try {
         NSMutableArray * arr = self.arr_identifierConfig[indexPath.section];
-        [arr removeObjectAtIndex:indexPath.row];
-        [self.arr_dataSource[indexPath.section] removeObjectAtIndex:indexPath.row];
+        [arr removeObjectAtIndex:indexPath.item];
+        [self.arr_dataSource[indexPath.section] removeObjectAtIndex:indexPath.item];
         [self removeSize];
         [self deleteItemsAtIndexPaths:@[indexPath]];
     }

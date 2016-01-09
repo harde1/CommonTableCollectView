@@ -248,7 +248,7 @@
     
     UIView * v_head = [[NSClassFromString(headName) alloc]init];
     
-    [self setViewValueWith:data byView:v_head tag:(int)self.arr_heads.count];
+    //    [self setViewValueWith:data byView:v_head tag:(int)self.arr_heads.count];
     
     [self.arr_heads addObject:v_head];
     [self.arr_headData addObject:data];
@@ -256,16 +256,12 @@
     _sectionNum = (int)self.arr_heads.count;
     
     if (!self.arrConfig) {
-        
-        
         self.arrConfig = [@[]mutableCopy];
         for (int i=0;i<_sectionNum;i++) {
             [self.arrConfig addObject:[@[]mutableCopy]];
         }
     }else{
         //已经存在的情况下
-        
-        
         for (int i=(int)self.arrConfig.count;i<_sectionNum;i++) {
             [self.arrConfig addObject:[@[]mutableCopy]];
         }
@@ -306,16 +302,9 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     //假如高度是已经计算出来就使用缓存高度
     NSNumber * numHeight = self.arrConfig[indexPath.section][indexPath.row][CELLHEIGHT];
-    NSInteger section = indexPath.section;
-    
     if (![numHeight isEqualToNumber:@(-1)] && ![numHeight isEqualToNumber:@0]) {
-        if (section==3) {
-            NSLog(@"缓存高度%@",numHeight);
-        }
         return [numHeight floatValue];
     }
-    
-    
     
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:self.arrConfig[indexPath.section][indexPath.row][CELLIDENTIFIER]];
     if (!cell) {
@@ -348,9 +337,7 @@
     
     self.arrConfig[indexPath.section][indexPath.row][CELLHEIGHT] = @(height);
     
-    if (section==3) {
-        NSLog(@"计算高度%f",height);
-    }
+    
     return height;
 }
 //一答
@@ -416,41 +403,20 @@
         return 0.001;
     }
     
-    if (_arr_heads.count==0) {
-        
+    if (_commonTableDelegate==nil) {
         
         return [_arr_section[section] floatValue];
     }else{
-        
-        UIView * v = _arr_heads[section];
-        NSDictionary * data = _arr_headData[section];
-        
-        
-        [v updateConstraints];
-        [v setNeedsUpdateConstraints];
-        
-        CGFloat height = [v systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height+1;
-        
-        [self setViewValueWith:data byView:v tag:(int)self.arr_heads.count];
-        
+        CGFloat height = [_commonTableDelegate commonTableView:self heightForHeaderInSection:section];
         return height;
-        
-        
     }
     
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
-    if (section<_arr_heads.count) {
-        
-        UIView * v_head= _arr_heads[section];
-        
-        v_head.tag = section;
-        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapHead:)];
-        [v_head addGestureRecognizer:tap];
-        
-        
+    if (_commonTableDelegate) {
+        UIView * v_head = [_commonTableDelegate commonTableView:self viewForHeaderInSection:section];
         return v_head;
     }
     return nil;

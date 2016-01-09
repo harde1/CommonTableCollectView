@@ -13,12 +13,11 @@
 
 - (void)awakeFromNib {
     
+    
     self.iv_left.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1.];
 }
 
 -(void)commonTableView:(CommonTableView *)tableView inViewController:(id)viewController didSelectCellAtIndexPath:(NSIndexPath *)indexPath{
-    
-    
     
 }
 
@@ -30,9 +29,7 @@
         ) {
         
         if (self.params) {
-            
             [self.iv_left setImageWithURL:[NSURL URLWithString:self.params[@"pic"]] placeholderImage:nil];
-            
         }
     }else{
         if (![self isShow]) {

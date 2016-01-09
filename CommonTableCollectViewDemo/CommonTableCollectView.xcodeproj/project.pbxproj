@@ -16,6 +16,7 @@
 		1F0D53931C059751007F714A /* CellTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F0D53911C059751007F714A /* CellTextView.xib */; };
 		1F1C72D01BE667E8009DC58B /* Rev_col.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1C72CE1BE667E8009DC58B /* Rev_col.m */; };
 		1F1C72D11BE667E8009DC58B /* Rev_col.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F1C72CF1BE667E8009DC58B /* Rev_col.xib */; };
+		1F20D7C31C30CED700BD1AC4 /* FuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F20D7C21C30CED700BD1AC4 /* FuController.m */; };
 		1F57D45A1BE4A46900BE88A7 /* Cell_col.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F57D4581BE4A46900BE88A7 /* Cell_col.m */; };
 		1F57D45B1BE4A46900BE88A7 /* Cell_col.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F57D4591BE4A46900BE88A7 /* Cell_col.xib */; };
 		1F57D45E1BE4A54300BE88A7 /* ColController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F57D45D1BE4A54300BE88A7 /* ColController.m */; };
@@ -69,6 +70,8 @@
 		1F1C72CD1BE667E7009DC58B /* Rev_col.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rev_col.h; sourceTree = "<group>"; };
 		1F1C72CE1BE667E8009DC58B /* Rev_col.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rev_col.m; sourceTree = "<group>"; };
 		1F1C72CF1BE667E8009DC58B /* Rev_col.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Rev_col.xib; sourceTree = "<group>"; };
+		1F20D7C11C30CED700BD1AC4 /* FuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FuController.h; sourceTree = "<group>"; };
+		1F20D7C21C30CED700BD1AC4 /* FuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FuController.m; sourceTree = "<group>"; };
 		1F57D4571BE4A46900BE88A7 /* Cell_col.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell_col.h; sourceTree = "<group>"; };
 		1F57D4581BE4A46900BE88A7 /* Cell_col.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell_col.m; sourceTree = "<group>"; };
 		1F57D4591BE4A46900BE88A7 /* Cell_col.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Cell_col.xib; sourceTree = "<group>"; };
@@ -212,6 +215,8 @@
 				1F0B2D2F1C1FA609002B2CD8 /* GoController.m */,
 				1F0B2D3A1C1FB78A002B2CD8 /* PicController.h */,
 				1F0B2D3B1C1FB78A002B2CD8 /* PicController.m */,
+				1F20D7C11C30CED700BD1AC4 /* FuController.h */,
+				1F20D7C21C30CED700BD1AC4 /* FuController.m */,
 				1F0B2D341C1FB55C002B2CD8 /* CellHead */,
 				F47E58731BC7B5C300D1633A /* Main.storyboard */,
 				F47E58761BC7B5C300D1633A /* Assets.xcassets */,
@@ -442,6 +447,7 @@
 				F47E58A01BC7D21C00D1633A /* Cell_test.m in Sources */,
 				1FFF5AD01C040F0C00C5903F /* VHead.m in Sources */,
 				1F0B2D381C1FB6A9002B2CD8 /* Cell_Essence_1.m in Sources */,
+				1F20D7C31C30CED700BD1AC4 /* FuController.m in Sources */,
 				1F57D45E1BE4A54300BE88A7 /* ColController.m in Sources */,
 				1F57D45A1BE4A46900BE88A7 /* Cell_col.m in Sources */,
 				1FFF5ACA1C040E4E00C5903F /* CellTest.m in Sources */,

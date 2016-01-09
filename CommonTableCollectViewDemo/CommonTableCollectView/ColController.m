@@ -21,6 +21,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //    _cv_text.collectionViewLayout =
+    
+    _cv_text.itemSize = CGSizeMake(self.view.frame.size.width, 100);
     
     [_cv_text addHeaderNibWithEntity:@{@"title":@"第1个头"} andViewName:@"Rev_col" andSection:0];
     for (int i=0; i<10; i++) {
@@ -31,6 +34,16 @@
     for (int i=0; i<10; i++) {
         [_cv_text addNibWithEntity:@{} andCellName:@"Cell_col" andSection:1];
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     [_cv_text setViewForSupplementaryElementOfKindInSection:^(UICollectionReusableView *view, NSString *king, NSInteger section) {
         if (section==0) {

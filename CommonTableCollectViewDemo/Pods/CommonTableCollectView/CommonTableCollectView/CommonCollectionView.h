@@ -35,7 +35,7 @@ typedef void(^MoveItemAtIndexPath)(UICollectionView * ctv,NSIndexPath * sourceIn
 @property(nonatomic,strong)NSMutableDictionary * dict_identifierHeader;
 
 
-@property(nonatomic,strong)UICollectionViewCell * cell_temp;
+@property(nonatomic,weak)UICollectionViewCell * cell_temp;
 @property(nonatomic,strong)UICollectionReusableView * revTemp;
 
 @property(nonatomic,assign)CGSize itemSize;

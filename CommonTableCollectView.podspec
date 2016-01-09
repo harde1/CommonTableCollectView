@@ -10,7 +10,7 @@ The tableView object is encapsulated，How many groups of how many lines are wha
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
 
   s.source       = { :git => "https://github.com/harde1/CommonTableCollectView.git", :tag => s.version.to_s }
-  s.author             = { "剑仁不败" => "harde1@163.com","敏钦" => "799621181@qq.com" }
+  s.author       = { "剑仁不败" => "harde1@163.com","敏钦" => "799621181@qq.com" }
 
   s.source_files  = "CommonTableCollectView/*.{h,m}"
   s.platform     = :ios, '7.1'
