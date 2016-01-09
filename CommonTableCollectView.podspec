@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "CommonTableCollectView"
-  s.version      = "0.0.4"
+  s.version      = "0.0.5"
   s.summary      = "General tableView, greatly reduce the programming workload"
 
   s.description  = "Program quickly,
