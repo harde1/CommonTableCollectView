@@ -151,6 +151,61 @@
             </objects>
             <point key="canvasLocation" x="2053" y="-568"/>
         </scene>
+        <!--Test Controller-->
+        <scene sceneID="zqc-d6-93u">
+            <objects>
+                <viewController storyboardIdentifier="TestController" automaticallyAdjustsScrollViewInsets="NO" id="y0X-vi-ZoI" customClass="TestController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PqG-yt-gEb"/>
+                        <viewControllerLayoutGuide type="bottom" id="5AX-YZ-LH5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ii1-4i-QU4">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vTL-VX-aOa" customClass="CommonTableView">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="vTL-VX-aOa" firstAttribute="leading" secondItem="Ii1-4i-QU4" secondAttribute="leading" id="7vh-X1-qrg"/>
+                            <constraint firstItem="5AX-YZ-LH5" firstAttribute="top" secondItem="vTL-VX-aOa" secondAttribute="bottom" id="KmA-1M-0jj"/>
+                            <constraint firstAttribute="trailing" secondItem="vTL-VX-aOa" secondAttribute="trailing" id="RuQ-XT-z7e"/>
+                            <constraint firstItem="vTL-VX-aOa" firstAttribute="top" secondItem="PqG-yt-gEb" secondAttribute="bottom" id="wPv-6x-BVw"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="tvTest" destination="vTL-VX-aOa" id="gdv-oJ-is2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iHS-QP-FEO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2387" y="-568"/>
+        </scene>
+        <!--Im Controller-->
+        <scene sceneID="6kI-uY-Lfr">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sFO-gW-0Rf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="ImController" automaticallyAdjustsScrollViewInsets="NO" id="rZK-ss-apm" customClass="ImController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HFf-h6-qhn"/>
+                        <viewControllerLayoutGuide type="bottom" id="VAZ-Ok-ipr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NkC-fk-HDT">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="2730" y="-568"/>
+        </scene>
         <!--通用型列表-->
         <scene sceneID="j5M-AB-Q8b">
             <objects>

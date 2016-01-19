@@ -38,14 +38,24 @@
 -(void)commonTableView:(CommonTableView *)tableView inViewController:(UIViewController *)viewController didSelectCellAtIndexPath:(NSIndexPath *)indexPath{
     
     UIViewController * vc = nil;
-    if ([self.params[@"title"] rangeOfString:@"tableView"].location != NSNotFound) {
+    if ([self.params[@"title"] isEqualToString:@"通用型tableView怎么写"]) {
         vc = [viewController.storyboard instantiateViewControllerWithIdentifier:@"ViewController"];
-    }else if ([self.params[@"title"] rangeOfString:@"CollectionView"].location != NSNotFound) {
+    }else if ([self.params[@"title"] isEqualToString:@"通用型CollectionView怎么写"]) {
         vc = [viewController.storyboard instantiateViewControllerWithIdentifier:@"ColController"];
-    }else{
+    }else if ([self.params[@"title"] isEqualToString:@"图片懒加载怎么写"]) {
         
         vc = [viewController.storyboard instantiateViewControllerWithIdentifier:@"PicController"];
+    }else if ([self.params[@"title"] isEqualToString:@"海隅的例子"]){
+        vc = [viewController.storyboard instantiateViewControllerWithIdentifier:@"TestController"];
+        
+    }else{
+        
+        vc = [viewController.storyboard instantiateViewControllerWithIdentifier:@"ImController"];
     }
+    
+    
+    
+    
     
     [viewController.navigationController pushViewController:vc animated:YES];
 }

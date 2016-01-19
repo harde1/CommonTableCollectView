@@ -20,6 +20,8 @@
     [_tvGo addClassWithEntity:@{@"title":@"通用型tableView怎么写"} andCellName:@"CellGo"];
     [_tvGo addClassWithEntity:@{@"title":@"通用型CollectionView怎么写"} andCellName:@"CellGo" editStyle:UITableViewCellEditingStyleDelete];
     [_tvGo addClassWithEntity:@{@"title":@"图片懒加载怎么写"} andCellName:@"CellGo"];
+    [_tvGo addClassWithEntity:@{@"title":@"海隅的例子"} andCellName:@"CellGo"];
+    [_tvGo addClassWithEntity:@{@"title":@"聊天气泡的例子"} andCellName:@"CellGo"];
 }
 
 
