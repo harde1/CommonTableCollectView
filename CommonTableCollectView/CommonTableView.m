@@ -1224,5 +1224,24 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:COMMONTABLEVIEWSCROLL object:@{COMMONTABLEVIE:self,SCROLLTYPE:@(scrollViewDidScrollToTop)}];
 }
 
+//- (BOOL)tableView:(UITableView *)tableView shouldShowMenuForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+
+//return YES;
+//}
+
+//- (BOOL)tableView:(UITableView *)tableView canPerformAction:(SEL)action forRowAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
+//if (action == @selector(copy:)) {
+//return YES;
+//}
+
+//return NO;
+//}
+
+//- (void)tableView:(UITableView *)tableView performAction:(SEL)action forRowAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
+//if (action == @selector(copy:)) {
+////[UIPasteboard generalPasteboard].string = [data objectAtIndex:indexPath.row];
+//}
+//}
 
 @end
