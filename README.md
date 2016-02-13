@@ -1,7 +1,7 @@
 # CommonTableCollectView
 通用型tableViewCollectView,以大量减少编程代码量为目标的库，在iOS，使用最频繁的控件莫过于tableView，这个库的目的，就是封装tableView，以最少的代码做最多的事情，能减少项目30%的代码量，一点都不夸张。
 
-#  Cocoapods 
+#  CocoaPods 
 
 
 pod 'CommonTableCollectView', '~> 0.0.4'
