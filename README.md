@@ -6,14 +6,7 @@
 
 pod 'CommonTableCollectView', '~> 0.0.4'
 
-#  预览图
-<p align="center" >
 
-</p>
-
-
-
-pod 'CommonTableCollectView', '~> 0.0.4'
 
 
 # 作者以及联系方式
