@@ -35,12 +35,12 @@ typedef void(^MoveItemAtIndexPath)(UICollectionView * ctv,NSIndexPath * sourceIn
 @property(nonatomic,strong)NSMutableDictionary * dict_identifierHeader;
 
 
-@property(nonatomic,weak)UICollectionViewCell * cell_temp;
+@property(nonatomic,strong)UICollectionViewCell * cell_temp;
 @property(nonatomic,strong)UICollectionReusableView * revTemp;
 
 @property(nonatomic,assign)CGSize itemSize;
 @property(nonatomic,assign)CGSize headSize;
-
+@property(nonatomic,assign)CGSize tempItemSize;
 //block，给cell附加方法
 @property(nonatomic,copy)CollectionViewCellAtIndexPath collectionViewCellAtIndexPath;
 @property(nonatomic,copy)ViewForSupplementaryElementOfKindInSection viewForSupplementaryElementOfKindInSection;

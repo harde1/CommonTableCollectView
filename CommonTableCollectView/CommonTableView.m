@@ -38,11 +38,11 @@
         _sectionNum = 1;
         _arr_section = @[@(0.0001)];
         if (!_arrConfig) {
-            _arrConfig = [@[[@[] mutableCopy]]mutableCopy];
+            _arrConfig = [@[[[NSArray array] mutableCopy]]mutableCopy];
         }
         
         if (!_arr_dataSource) {
-            _arr_dataSource = [@[[@[] mutableCopy]]mutableCopy];
+            _arr_dataSource = [@[[[NSArray array] mutableCopy]]mutableCopy];
         }
         self.estimatedRowHeight = 44;
         
@@ -59,10 +59,10 @@
         _sectionNum = 1;
         _arr_section = @[@(0)];
         if (!_arrConfig) {
-            self.arrConfig = [@[[@[] mutableCopy]]mutableCopy];
+            self.arrConfig = [@[[[NSArray array] mutableCopy]]mutableCopy];
         }
         if (!_arr_dataSource) {
-            _arr_dataSource = [@[[@[] mutableCopy]]mutableCopy];
+            _arr_dataSource = [@[[[NSArray array] mutableCopy]]mutableCopy];
         }
         self.estimatedRowHeight = 44;
         
@@ -80,10 +80,10 @@
         _sectionNum = 1;
         _arr_section = @[@(0)];
         if (!_arrConfig) {
-            self.arrConfig = [@[[@[] mutableCopy]]mutableCopy];
+            self.arrConfig = [@[[[NSArray array] mutableCopy]]mutableCopy];
         }
         if (!_arr_dataSource) {
-            _arr_dataSource = [@[[@[] mutableCopy]]mutableCopy];
+            _arr_dataSource = [@[[[NSArray array] mutableCopy]]mutableCopy];
         }
         
         self.estimatedRowHeight = 44;
@@ -101,16 +101,16 @@
         _arr_section=arr_sections;
         _sectionNum = (int)arr_sections.count;
         if (!_arrConfig) {
-            self.arrConfig = [@[]mutableCopy];
+            self.arrConfig = [NSMutableArray array];
             for (int i=0;i<_sectionNum;i++) {
-                [self.arrConfig addObject:[@[]mutableCopy]];
+                [self.arrConfig addObject:[NSMutableArray array]];
             }
             
         }
         if (!_arr_dataSource) {
-            _arr_dataSource = [@[]mutableCopy];
+            _arr_dataSource = [NSMutableArray array];
             for (int i=0;i<_sectionNum;i++) {
-                [_arr_dataSource addObject:[@[]mutableCopy]];
+                [_arr_dataSource addObject:[NSMutableArray array]];
             }
         }
         self.estimatedRowHeight = 44;
@@ -125,13 +125,13 @@
     _arr_section=arr_section;
     _sectionNum = (int)arr_section.count;
     
-    self.arrConfig = [@[]mutableCopy];
+    self.arrConfig = [NSMutableArray array];
     for (int i=0;i<_sectionNum;i++) {
-        [self.arrConfig addObject:[@[]mutableCopy]];
+        [self.arrConfig addObject:[NSMutableArray array]];
     }
-    _arr_dataSource = [@[]mutableCopy];
+    _arr_dataSource = [NSMutableArray array];
     for (int i=0;i<_sectionNum;i++) {
-        [_arr_dataSource addObject:[@[]mutableCopy]];
+        [_arr_dataSource addObject:[NSMutableArray array]];
     }
     
 }
@@ -149,15 +149,15 @@
         _arr_section=arr_sections;
         _sectionNum = (int)arr_sections.count;
         if (!_arrConfig) {
-            self.arrConfig = [@[]mutableCopy];
+            self.arrConfig = [NSMutableArray array];
             for (int i=0;i<_sectionNum;i++) {
-                [self.arrConfig addObject:[@[]mutableCopy]];
+                [self.arrConfig addObject:[NSMutableArray array]];
             }
         }
         if (!_arr_dataSource) {
-            _arr_dataSource = [@[]mutableCopy];
+            _arr_dataSource = [NSMutableArray array];
             for (int i=0;i<_sectionNum;i++) {
-                [_arr_dataSource addObject:[@[]mutableCopy]];
+                [_arr_dataSource addObject:[NSMutableArray array]];
             }
         }
         self.estimatedRowHeight = 44;
@@ -170,7 +170,7 @@
 -(NSMutableArray *)arr_heads{
     
     if (!_arr_heads) {
-        _arr_heads = [@[]mutableCopy];
+        _arr_heads = [NSMutableArray array];
     }
     return _arr_heads;
 }
@@ -178,7 +178,7 @@
 -(NSMutableArray *)arr_headData{
     
     if (!_arr_headData) {
-        _arr_headData = [@[]mutableCopy];
+        _arr_headData = [NSMutableArray array];
     }
     return _arr_headData;
 }
@@ -215,26 +215,26 @@
     
     
     if (!self.arrConfig) {
-        self.arrConfig = [@[]mutableCopy];
+        self.arrConfig = [NSMutableArray array];
         for (int i=0;i<_sectionNum;i++) {
-            [self.arrConfig addObject:[@[]mutableCopy]];
+            [self.arrConfig addObject:[NSMutableArray array]];
         }
     }else{
         //已经存在的情况下
         for (int i=(int)self.arrConfig.count;i<_sectionNum;i++) {
-            [self.arrConfig addObject:[@[]mutableCopy]];
+            [self.arrConfig addObject:[NSMutableArray array]];
         }
     }
     
     if (!self.arrConfig) {
-        self.arrConfig = [@[]mutableCopy];
+        self.arrConfig = [NSMutableArray array];
         for (int i=0;i<_sectionNum;i++) {
-            [self.arrConfig addObject:[@[]mutableCopy]];
+            [self.arrConfig addObject:[NSMutableArray array]];
         }
     }else{
         //已经存在的情况下
         for (int i=(int)self.arrConfig.count;i<_sectionNum;i++) {
-            [self.arrConfig addObject:[@[]mutableCopy]];
+            [self.arrConfig addObject:[NSMutableArray array]];
         }
     }
     
@@ -256,26 +256,26 @@
     _sectionNum = (int)self.arr_heads.count;
     
     if (!self.arrConfig) {
-        self.arrConfig = [@[]mutableCopy];
+        self.arrConfig = [NSMutableArray array];
         for (int i=0;i<_sectionNum;i++) {
-            [self.arrConfig addObject:[@[]mutableCopy]];
+            [self.arrConfig addObject:[NSMutableArray array]];
         }
     }else{
         //已经存在的情况下
         for (int i=(int)self.arrConfig.count;i<_sectionNum;i++) {
-            [self.arrConfig addObject:[@[]mutableCopy]];
+            [self.arrConfig addObject:[NSMutableArray array]];
         }
     }
     
     if (!self.arrConfig) {
-        self.arrConfig = [@[]mutableCopy];
+        self.arrConfig = [NSMutableArray array];
         for (int i=0;i<_sectionNum;i++) {
-            [self.arrConfig addObject:[@[]mutableCopy]];
+            [self.arrConfig addObject:[NSMutableArray array]];
         }
     }else{
         //已经存在的情况下
         for (int i=(int)self.arrConfig.count;i<_sectionNum;i++) {
-            [self.arrConfig addObject:[@[]mutableCopy]];
+            [self.arrConfig addObject:[NSMutableArray array]];
         }
     }
     
@@ -285,8 +285,8 @@
 }
 
 -(void)clearAllData{
-    self.arr_dataSource = @[@[].mutableCopy].mutableCopy;
-    self.arrConfig = @[@[].mutableCopy].mutableCopy;
+    self.arr_dataSource = @[[NSArray array].mutableCopy].mutableCopy;
+    self.arrConfig = @[[NSArray array].mutableCopy].mutableCopy;
     [self reloadData];
 }
 
@@ -1079,10 +1079,10 @@
     
     //2、 调整结构
     while (self.arrConfig.count<=section) {
-        [self.arrConfig addObject:@[].mutableCopy];
+        [self.arrConfig addObject:[NSArray array].mutableCopy];
     }
     while (self.arr_dataSource.count<=section) {
-        [self.arr_dataSource addObject:@[].mutableCopy];
+        [self.arr_dataSource addObject:[NSArray array].mutableCopy];
     }
     //3、添加数据进去
     [self.arrConfig[section] addObject:@{CELLIDENTIFIER:cellName,CELLDATASOURCE:object,CELLHEIGHT:@-1,CELLCANEDIT:@(allowEdit),CELLEDITINGSTYLE:@(editStyle)}.mutableCopy];
@@ -1141,7 +1141,7 @@
 -(NSMutableArray *)arr_interceptObjectEvent{
     
     if (!_arr_interceptObjectEvent) {
-        _arr_interceptObjectEvent =[@[]mutableCopy];
+        _arr_interceptObjectEvent =[NSMutableArray array];
     }
     return _arr_interceptObjectEvent;
 }
