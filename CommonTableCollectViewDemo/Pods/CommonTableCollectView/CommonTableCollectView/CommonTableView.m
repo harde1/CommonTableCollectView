@@ -25,26 +25,80 @@
 @property(nonatomic,strong)NSMutableArray * arr_heads;
 @property(nonatomic,strong)NSMutableArray * arr_headData;
 
+@property(nonatomic,assign)CGFloat offY;
 @end
 
 @implementation CommonTableView
+-(void)configInit{
+    //省略
+    self.delegate = self;
+    self.dataSource = self;
+    _sectionNum = 1;
+    _arr_section = @[@(0.0001)];
+    if (!_arrConfig) {
+        _arrConfig = [@[[@[] mutableCopy]]mutableCopy];
+    }
+    
+    if (!_arr_dataSource) {
+        _arr_dataSource = [@[[@[] mutableCopy]]mutableCopy];
+    }
+    self.estimatedRowHeight = 44;
+}
+-(void)initData{
+    
+}
+
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
+    if (self.scrolltoBottom) {
+    if ([keyPath isEqualToString:@"contentSize"]) {
+            BOOL b = (self.contentSize.height<self.frame.size.height);
+        if (b) {
+            return;
+        }
+        
+            NSIndexPath * last =[NSIndexPath indexPathForRow:[self.arr_dataSource[([self.arr_dataSource count]-1)] count]-1 inSection:[self.arr_dataSource count]-1];
+            BOOL isBottom = [change[@"old"] CGSizeValue].height - self.frame.size.height - self.offY < 20;
+            if (isBottom) {
+                double delayInSeconds = 0.5;
+                 __weak typeof(self) weakSelf = self;
+                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+                dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                    [UIView animateWithDuration:0.3 animations:^{
+                        weakSelf.contentOffset = CGPointMake(weakSelf.contentOffset.x, weakSelf.contentSize.height-weakSelf.frame.size.height);
+                    }];
+                });
+            }
+        self.offY = self.contentOffset.y;
+    }else if ([keyPath isEqualToString:@"contentOffset"]) {
+        self.offY = [change[@"new"] CGPointValue].y ;
+    }
+}
+
+}
+-(void)layoutSubviews{
+    @try {
+        [self removeObserver:self forKeyPath:@"contentSize"];
+        [self removeObserver:self forKeyPath:@"contentOffset"];
+    } @catch (NSException *exception) {
+    } @finally {
+    }
+    [self addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
+     [self addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
+    [super layoutSubviews];
+}
+
+-(void)removeFromSuperview{
+    [self removeObserver:self forKeyPath:@"contentSize"];
+        [self removeObserver:self forKeyPath:@"contentOffset"];
+    [super removeFromSuperview];
+}
 
 - (instancetype)initWithCoder:(NSCoder *)coder{
     self = [super initWithCoder:coder];
     if (self) {
         //省略
-        self.delegate = self;
-        self.dataSource = self;
-        _sectionNum = 1;
-        _arr_section = @[@(0.0001)];
-        if (!_arrConfig) {
-            _arrConfig = [@[[@[] mutableCopy]]mutableCopy];
-        }
-        
-        if (!_arr_dataSource) {
-            _arr_dataSource = [@[[@[] mutableCopy]]mutableCopy];
-        }
-        self.estimatedRowHeight = 44;
+        [self configInit];
+        [self initData];
         
     }
     return self;
@@ -53,19 +107,8 @@
     
     if (self = [super initWithFrame:frame style:style]) {
         //省略
-        self.delegate = self;
-        self.dataSource = self;
-        
-        _sectionNum = 1;
-        _arr_section = @[@(0)];
-        if (!_arrConfig) {
-            self.arrConfig = [@[[@[] mutableCopy]]mutableCopy];
-        }
-        if (!_arr_dataSource) {
-            _arr_dataSource = [@[[@[] mutableCopy]]mutableCopy];
-        }
-        self.estimatedRowHeight = 44;
-        
+        [self configInit];
+        [self initData];
     }
     
     return self;
@@ -74,19 +117,9 @@
     self = [super init];
     if (self) {
         //省略
-        self.delegate = self;
-        self.dataSource = self;
         
-        _sectionNum = 1;
-        _arr_section = @[@(0)];
-        if (!_arrConfig) {
-            self.arrConfig = [@[[@[] mutableCopy]]mutableCopy];
-        }
-        if (!_arr_dataSource) {
-            _arr_dataSource = [@[[@[] mutableCopy]]mutableCopy];
-        }
-        
-        self.estimatedRowHeight = 44;
+        [self configInit];
+        [self initData];
         
     }
     return self;
@@ -115,6 +148,7 @@
         }
         self.estimatedRowHeight = 44;
         
+        [self initData];
     }
     return self;
 }
@@ -161,6 +195,7 @@
             }
         }
         self.estimatedRowHeight = 44;
+        [self initData];
         
     }
     return self;
@@ -1244,4 +1279,11 @@
 //}
 //}
 
+-(BOOL)isAtTheBottomOfTheTableView{
+    //如果一屏都不够就不需要了
+    if (self.contentSize.height<self.frame.size.height) {
+        return NO;
+    }
+    return self.contentOffset.y == self.contentSize.height-self.frame.size.height;
+}
 @end

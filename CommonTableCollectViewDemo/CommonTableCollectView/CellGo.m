@@ -47,15 +47,9 @@
         vc = [viewController.storyboard instantiateViewControllerWithIdentifier:@"PicController"];
     }else if ([self.params[@"title"] isEqualToString:@"海隅的例子"]){
         vc = [viewController.storyboard instantiateViewControllerWithIdentifier:@"TestController"];
-        
     }else{
-        
         vc = [viewController.storyboard instantiateViewControllerWithIdentifier:@"ImController"];
     }
-    
-    
-    
-    
     
     [viewController.navigationController pushViewController:vc animated:YES];
 }
