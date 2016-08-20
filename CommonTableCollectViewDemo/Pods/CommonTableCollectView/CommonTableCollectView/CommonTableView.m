@@ -26,6 +26,10 @@
 @property(nonatomic,strong)NSMutableArray * arr_headData;
 
 @property(nonatomic,assign)CGFloat offY;
+@property(nonatomic,assign)BOOL isBottom;
+@property(nonatomic,assign)CGSize oldSize;
+@property(nonatomic,assign)BOOL isUserMove;
+
 @end
 
 @implementation CommonTableView
@@ -49,31 +53,27 @@
 }
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
+    __weak typeof(self) weakSelf = self;
     if (self.scrolltoBottom) {
-    if ([keyPath isEqualToString:@"contentSize"]) {
-            BOOL b = (self.contentSize.height<self.frame.size.height);
-        if (b) {
-            return;
-        }
-        
-            NSIndexPath * last =[NSIndexPath indexPathForRow:[self.arr_dataSource[([self.arr_dataSource count]-1)] count]-1 inSection:[self.arr_dataSource count]-1];
-            BOOL isBottom = [change[@"old"] CGSizeValue].height - self.frame.size.height - self.offY < 20;
-            if (isBottom) {
-                double delayInSeconds = 0.5;
-                 __weak typeof(self) weakSelf = self;
-                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-                dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        if ([keyPath isEqualToString:@"contentSize"]) {
+            
+            if (_isBottom) {
+                CGFloat nh = [change[@"new"] CGSizeValue].height;
+//                double delayInSeconds = 0.3;
+//                 dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+//                dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
                     [UIView animateWithDuration:0.3 animations:^{
-                        weakSelf.contentOffset = CGPointMake(weakSelf.contentOffset.x, weakSelf.contentSize.height-weakSelf.frame.size.height);
+                    } completion:^(BOOL finished) {
+                        weakSelf.contentOffset = CGPointMake(weakSelf.contentOffset.x,  nh-weakSelf.frame.size.height);
                     }];
-                });
+//                });
             }
-        self.offY = self.contentOffset.y;
-    }else if ([keyPath isEqualToString:@"contentOffset"]) {
-        self.offY = [change[@"new"] CGPointValue].y ;
+            
+        }else if ([keyPath isEqualToString:@"contentOffset"]) {
+            _isUserMove = ( self.contentSize.height-self.frame.size.height - [change[@"new"] CGPointValue].y <2);
+        }
     }
-}
-
+    
 }
 -(void)layoutSubviews{
     @try {
@@ -83,13 +83,16 @@
     } @finally {
     }
     [self addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
-     [self addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
+    [self addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
+    __weak typeof(self) weakSelf = self;
+    _isBottom = (!CGSizeEqualToSize(_oldSize, self.contentSize) && !CGSizeEqualToSize(_oldSize, CGSizeZero)&&weakSelf.contentSize.height>weakSelf.frame.size.height&&self.scrolltoBottom&&_isUserMove);
+    _oldSize = weakSelf.contentSize;
     [super layoutSubviews];
 }
 
 -(void)removeFromSuperview{
     [self removeObserver:self forKeyPath:@"contentSize"];
-        [self removeObserver:self forKeyPath:@"contentOffset"];
+    [self removeObserver:self forKeyPath:@"contentOffset"];
     [super removeFromSuperview];
 }
 

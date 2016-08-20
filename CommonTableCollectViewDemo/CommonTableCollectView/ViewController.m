@@ -43,8 +43,8 @@
 
 
 - (void)clickAdd:(id)sender {
-    [_tv_test insertIndexPath:[NSIndexPath indexPathForRow:[_tv_test.arr_dataSource[0] count] inSection:0] withNibWithEntity:@{@"内容":@"abc   我是插入的，我是插入的，我是插入的，我是插入的，我是插入的，"} andCellName:@"Cell_test" withRowAnimation:UITableViewRowAnimationNone];
-    
+//    [_tv_test insertIndexPath:[NSIndexPath indexPathForRow:[_tv_test.arr_dataSource[0] count] inSection:0] withNibWithEntity:@{@"内容":@"abc   我是插入的，我是插入的，我是插入的，我是插入的，我是插入的，"} andCellName:@"Cell_test" withRowAnimation:UITableViewRowAnimationNone];
+   [_tv_test addNibWithEntity:@{@"内容":@"abc   我是插入的，我是插入的，我是插入的，我是插入的，我是插入的，"} andCellName:NSStringFromClass([Cell_test class])];
 }
 
 - (void)clickRemove:(id)sender {
