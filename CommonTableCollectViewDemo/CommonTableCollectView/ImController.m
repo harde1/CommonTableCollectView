@@ -32,6 +32,7 @@
     
     //tv
     _tvIm = [[CommonTableView alloc]init];
+    _tvIm.scrolltoBottom = YES;
     _tvIm.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tvIm.backgroundColor = [UIColor clearColor];
     self.view.backgroundColor = [UIColor lightGrayColor];

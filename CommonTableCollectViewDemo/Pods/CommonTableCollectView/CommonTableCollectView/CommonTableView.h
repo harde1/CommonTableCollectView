@@ -51,7 +51,7 @@ UIScrollViewDelegate
 @property(nonatomic,strong)NSArray * arr_section;
 //关闭自动刷新
 @property(nonatomic)BOOL closeAutoReload;
-//滚到最后,未实现
+//滚到最后,条件是，只要用户把tableView拉倒最后就会默认滚动到最后
 @property(nonatomic)BOOL scrolltoBottom;
 //用于tableView的头
 @property(assign,nonatomic)id<CommonTableDelegate> commonTableDelegate;
