@@ -174,8 +174,6 @@
 }
 
 
-
-
 - (instancetype)initWithFrame:(CGRect)frame Section:(NSArray *)arr_sections{
     self = [super initWithFrame:frame style:UITableViewStyleGrouped];
     if (self) {
